@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->date('date_of_birth');
-            $table->string('DNI', 8);
-            $table->string('email');
+            $table->string('DNI', 8)->unique();
+            $table->string('email')->unique();
             $table->foreignId('address_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
-            $table->string('mobile_number', 14)->nullable();
+            $table->string('phone_number', 14)->nullable();
             $table->foreignId('plan_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
