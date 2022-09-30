@@ -22,8 +22,7 @@ class EmployeeFactory extends Factory
             'date_of_birth' => fake()->date(),
             'DNI' => fake()->numberBetween(1000000, 10000000),
             'email' => fake()->email(),
-            'address_id' => 0,
-            'plan_id' => 0
+            'phone_number' => fake()->phoneNumber(),
         ];
     }
 }
