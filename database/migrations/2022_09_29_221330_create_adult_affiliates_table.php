@@ -21,10 +21,10 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->mediumInteger('DNI')->unique();
             $table->string('email')->unique();
-            $table->string('user_name')->unique();
             $table->string('password');
-            $table->string('adress');
-            $table->integer('phone');
+            $table->string('street')->nullable();
+            $table->string('street_number')->nullable();
+            $table->integer('phone')->nullable();
             $table->unsignedBigInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans')->onUpdate('cascade')
                   ->onDelete('cascade');
