@@ -16,7 +16,11 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::paginate(Controller::$RESULT_PAGINATION);
+
+        echo $employees;
+
+        return view('employees.index')->with('employees', $employees);
     }
 
     /**
@@ -26,6 +30,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
+        return view('employees.create');
     }
     
     /**
@@ -57,7 +62,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('employees.show')->with('employee', $employee);
     }
 
     /**

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->string('name');
             $table->string('lastname');
             $table->date('date_of_birth');
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->foreignId('address_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->string('phone_number', 14)->nullable();
-            $table->foreignId('plan_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
