@@ -16,61 +16,61 @@
 
                                    <label for="floatingInput">Los campos con * son obligatorios</label>
 
-                                   <div class="form-floating mb-3">
-                                        <label for="floatingInput">Nombre *</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="name" required>
+                                   <div class="row align-items-start">
+                                        <label class="col">Nombre *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="name" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Apellido *</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="surname" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Apellido *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="surname" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Fecha de nacimiento *</label>
-                                        <input type="date" class="form-control" id="floatingInput" name="dateBirth" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Fecha de nacimiento *</label>
+                                        <input type="date" class="form-control col" id="floatingInput" name="dateBirth" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">DNI *</label>
-                                        <input type="number" class="form-control" id="floatingInput" name="DNI" required>
+                                    <div div class="row align-items-start">
+                                        <p class="col">DNI *</p>
+                                        <input type="number" class="form-control col" id="floatingInput" name="DNI" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">email *</label>
-                                        <input type="email" class="form-control" id="floatingInput" name="email" required>
+                                    <div class="row align-items-start">
+                                        <p class="col">email *</p>
+                                        <input type="email" class="form-control col" id="floatingInput" name="email" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Direccíon</label>
+                                    <div class="row align-items-start">
+                                        <p class="col">Direccíon</p>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Calle</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="street">
-                                        <label for="floatingInput">Número</label>
-                                        <input type="number" class="form-control" id="floatingInput" name="streetNumber">
+                                    <div class="row align-items-start">
+                                        <label class="col">Calle</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="street">
+                                        <label class="col">Número</label>
+                                        <input type="number" class="form-control col" id="floatingInput" name="streetNumber">
 
                                     </div>
                                    
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Localidad *</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="location" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Localidad *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="location" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Proviencia *</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="province" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Proviencia *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="province" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Telefono *</label>
-                                        <input type="text" class="form-control" id="floatingInput" name="phone" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Telefono *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="phone" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Plan seleccionado *</label>
-                                        <select class="form-select" aria-label="Default select example" name="plan" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Plan seleccionado *</label>
+                                        <select class="form-select col" aria-label="Default select example" name="plan" required>
                                             <option selected>Open this select menu</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -78,9 +78,9 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Forma de pago *</label>
-                                        <select class="form-select" aria-label="Default select example" name="wayToPay" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Forma de pago *</label>
+                                        <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
                                             <option selected>Open this select menu</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -88,14 +88,14 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Contraseña *</label>
-                                        <input type="password" class="form-control" id="floatingInput" name="password1" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Contraseña *</label>
+                                        <input type="password" class="form-control col" id="floatingInput" name="password1" required>
                                     </div>
 
-                                    <div class="form-floating mb-3">
-                                        <label for="floatingInput">Repetir contraseña *</label>
-                                        <input type="password" class="form-control" id="floatingInput" name="password2" required>
+                                    <div class="row align-items-start">
+                                        <label class="col">Repetir contraseña *</label>
+                                        <input type="password" class="form-control col" id="floatingInput" name="password2" required>
                                     </div>
 
                                     <div class="d-flex justify-content-end">
