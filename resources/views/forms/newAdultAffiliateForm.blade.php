@@ -14,7 +14,7 @@
 
                                     @csrf
 
-                                   <label for="floatingInput">Los campos con * son obligatorios</label>
+                                   <p for="floatingInput">Los campos con * son obligatorios</p>
 
                                    <div class="row align-items-start">
                                         <label class="col">Nombre *</label>
