@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->smallInteger('DNI');
+            $table->smallInteger('DNI')->unique();
             $table->date('birthdate');
             $table->integer('phone_number');
             $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('restrict');
