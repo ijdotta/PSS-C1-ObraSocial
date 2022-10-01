@@ -42,7 +42,7 @@ class MinorAffiliateController extends Controller
         $surname = $request->get('surname');
         $birthdate = $request->get('birthdate');
         $DNI = $request->get('DNI');
-        $phone = $request->get('phoneNumber');
+        $phoneNumber = $request->get('phoneNumber');
         $adultAffiliateID = $request->get('adultAffiliateID');
 
         if (MinorAffiliate::where('DNI', '=', $DNI)->count() > 0)
@@ -55,7 +55,7 @@ class MinorAffiliateController extends Controller
             return response()->json(['message' => 'El ID del mayor responsable no es valido'], 200); //Corroborar que funcione cuando ya tengamos adultos
 
         try{
-            MinorAffiliate::storeMinorAffiliate($name, $surname, $birthdate, $DNI, $phone, $adultAffiliateID);
+            MinorAffiliate::storeMinorAffiliate($name, $surname, $birthdate, $DNI, $phoneNumber, $adultAffiliateID);
         } catch (QueryException $ex){
             $message = 'hubo un error';
             session()->flash('message', $message);

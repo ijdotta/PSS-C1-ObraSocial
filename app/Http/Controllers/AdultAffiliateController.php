@@ -41,7 +41,7 @@ class AdultAffiliateController extends Controller
         $DNI = $request->get('DNI');
         $street = $request->get('street');
         $streetNumber = $request->get('streetNumber');
-        $phone = $request->get('phone');
+        $phoneNumber = $request->get('phoneNumber');
         $plan = $request->get('plan');
         $wayToPay = $request->get('wayToPay');
         $password = $request->get('password');
@@ -60,7 +60,7 @@ class AdultAffiliateController extends Controller
         if (!AdultAffiliateController::is_18($birthdate))
             return response()->json(['message' => 'Es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
 
-        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province);
+        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
 
         return redirect()->route('dashboard');
     }

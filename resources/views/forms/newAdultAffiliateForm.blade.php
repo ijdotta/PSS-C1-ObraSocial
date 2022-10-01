@@ -65,7 +65,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Telefono *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="phone" required>
+                                        <input type="text" class="form-control col" id="floatingInput" name="phoneNumber" required>
                                     </div>
 
                                     <div class="row align-items-start">

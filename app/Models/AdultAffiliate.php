@@ -14,7 +14,7 @@ class AdultAffiliate extends Model
         return $this->hasMany(MinorAffiliate::class);
     }
 
-    public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province)
+    public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province)
     {
         if (isset($name)) {
             $affiliate = new AdultAffiliate();
@@ -27,7 +27,7 @@ class AdultAffiliate extends Model
             $affiliate->password = $password;
             $affiliate->street = $street;
             $affiliate->street_number = $streetNumber;
-            $affiliate->phone = $phone;
+            $affiliate->phone_number = $phoneNumber;
             $affiliate->plan_id = $plan;
             $affiliate->way_to_pay = $wayToPay;
             $affiliate->location = $location;

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('street')->nullable();
             $table->string('street_number')->nullable();
-            $table->integer('phone')->nullable();
+            $table->integer('phone_number')->nullable();
             $table->unsignedBigInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans')->onUpdate('cascade')
                 ->onDelete('cascade');
