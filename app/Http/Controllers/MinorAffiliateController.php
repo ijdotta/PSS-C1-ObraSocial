@@ -6,6 +6,7 @@ use App\Models\MinorAffiliate;
 use Illuminate\Http\Request;
 use DateTime;
 use App\Models\AdultAffiliate;
+use Illuminate\Database\QueryException;
 
 class MinorAffiliateController extends Controller
 {
@@ -39,9 +40,9 @@ class MinorAffiliateController extends Controller
     {
         $name = $request->get('name');
         $surname = $request->get('surname');
-        $dateBirth = $request->get('dateBirth');
+        $dateBirth = $request->get('birthdate');
         $DNI = $request->get('DNI');
-        $phone = $request->get('phone');
+        $phone = $request->get('phoneNumber');
         $adultAffiliateID = $request->get('adultAffiliateID');
 
         if (MinorAffiliate::where('DNI', '=', $DNI)->count() > 0)
@@ -53,8 +54,12 @@ class MinorAffiliateController extends Controller
         if (AdultAffiliate::where('ID', '=', $adultAffiliateID)->count() < 1)
             return response()->json(['message' => 'El ID del mayor responsable no es valido'], 200); //Corroborar que funcione cuando ya tengamos adultos
 
-
-        MinorAffiliate::storeMinorAffiliate($name, $surname, $dateBirth, $DNI, $phone, $adultAffiliateID);
+        try{
+            MinorAffiliate::storeMinorAffiliate($name, $surname, $dateBirth, $DNI, $phone, $adultAffiliateID);
+        } catch (QueryException $ex){
+            $message = 'hubo un error';
+            session()->flash('message', $message);
+        }
 
         return redirect()->route('dashboard');
     }

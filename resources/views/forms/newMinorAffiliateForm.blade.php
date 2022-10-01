@@ -28,7 +28,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Fecha de nacimiento *</label>
-                                        <input type="date" class="form-control col" id="floatingInput" name="dateBirth" required>
+                                        <input type="date" class="form-control col" id="floatingInput" name="birthdate" required>
                                     </div>
 
                                     <div div class="row align-items-start">
@@ -38,7 +38,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Telefono *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="phone" required>
+                                        <input type="text" class="form-control col" id="floatingInput" name="phoneNumber" required>
                                     </div>
 
                                     <div class="row align-items-start">
