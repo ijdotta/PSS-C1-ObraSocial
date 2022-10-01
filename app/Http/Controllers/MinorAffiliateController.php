@@ -114,6 +114,7 @@ class MinorAffiliateController extends Controller
      */
     public function destroy(MinorAffiliate $minorAffiliate)
     {
-        //
+        $minorAffiliate->delete();
+        return redirect()->route('dashboard');
     }
 }
