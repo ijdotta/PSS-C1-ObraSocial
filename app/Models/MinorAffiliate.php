@@ -9,6 +9,10 @@ class MinorAffiliate extends Model
 {
     use HasFactory;
 
+    public function adultAffiliate(){
+        return $this->belongsTo(AdultAffiliate::class);
+    }
+
     public static function storeMinorAffiliate($name, $surname, $dateBirth, $DNI, $phone, $adultAffiliateID){
         
         if(isset($name)){
