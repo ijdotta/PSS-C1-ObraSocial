@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('minor_affiliates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('sur_name');
+            $table->string('surname');
             $table->smallInteger('DNI');
             $table->date('birthdate');
             $table->integer('phone_number');
