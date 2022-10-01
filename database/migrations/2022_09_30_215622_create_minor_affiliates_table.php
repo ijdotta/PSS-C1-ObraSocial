@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('minor_affiliates', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('sur_name');
+            $table->smallInteger('DNI');
+            $table->date('birthdate');
+            $table->integer('phone_number');
+            $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
