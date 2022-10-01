@@ -17,9 +17,6 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::paginate(Controller::$RESULT_PAGINATION);
-
-        echo $employees;
-
         return view('employees.index')->with('employees', $employees);
     }
 
@@ -107,8 +104,7 @@ class EmployeeController extends Controller
             'date_of_birth' => 'required|date',
             'DNI' => 'required|numeric',
             'email' => 'required|email',
-            'phone_numeric' => 'nullable|numeric|max:14',
-            'plan_id' => 'numeric'
+            'phone_number' => 'nullable|numeric|max:14',
         ]);
     }
 
