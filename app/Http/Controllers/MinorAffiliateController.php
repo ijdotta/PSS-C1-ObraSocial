@@ -37,32 +37,33 @@ class MinorAffiliateController extends Controller
      */
     public function store(Request $request)
     {
-        $name=$request->get('name');
-        $surname=$request->get('surname');
-        $dateBirth=$request->get('dateBirth');
-        $DNI=$request->get('DNI');
-        $phone=$request->get('phone');
-        $adultAffiliateID=$request->get('adultAffiliateID');
- 
-        if(MinorAffiliate::where('DNI','=',$DNI)->count() > 0)
-            return response()->json(['message' => 'DNI ya registrado'],200); //Hacer vista para cuando ya esta registrado el DNI
-        
-        if(!MinorAffiliateController::is_minor($dateBirth))
-            return response()->json(['message' => 'Es mayor de edad'],200); //Hacer vista para cuando ya se intenta registrar un mayor de edad
+        $name = $request->get('name');
+        $surname = $request->get('surname');
+        $dateBirth = $request->get('dateBirth');
+        $DNI = $request->get('DNI');
+        $phone = $request->get('phone');
+        $adultAffiliateID = $request->get('adultAffiliateID');
 
-        if(AdultAffiliate::where('ID','=',$adultAffiliateID)->count() < 1)
-            return response()->json(['message' => 'El ID del mayor responsable no es valido'],200); //Corroborar que funcione cuando ya tengamos adultos
-        
+        if (MinorAffiliate::where('DNI', '=', $DNI)->count() > 0)
+            return response()->json(['message' => 'DNI ya registrado'], 200); //Hacer vista para cuando ya esta registrado el DNI
+
+        if (!MinorAffiliateController::is_minor($dateBirth))
+            return response()->json(['message' => 'Es mayor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un mayor de edad
+
+        if (AdultAffiliate::where('ID', '=', $adultAffiliateID)->count() < 1)
+            return response()->json(['message' => 'El ID del mayor responsable no es valido'], 200); //Corroborar que funcione cuando ya tengamos adultos
+
 
         MinorAffiliate::storeMinorAffiliate($name, $surname, $dateBirth, $DNI, $phone, $adultAffiliateID);
-        
+
         return redirect()->route('dashboard');
     }
 
-    function is_minor($dateBirth){
+    function is_minor($dateBirth)
+    {
         $dobObject = new DateTime(date("Y-m-d", strtotime($dateBirth)));
         $nowObject = new DateTime();
-        
+
         return $dobObject < $nowObject ? ($dobObject->diff($nowObject)->y > 18) : true;
     }
 
