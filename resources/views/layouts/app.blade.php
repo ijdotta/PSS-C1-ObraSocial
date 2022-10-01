@@ -35,7 +35,7 @@
                                         <a class="nav-link" href="#">Inicio<span class="sr-only"></span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/adult_affiliate/create)}}">Afiliados</a>
+                                        <a class="nav-link" href="{{ url('/adult_affiliate/create')}}">Afiliados</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Empleados</a>
