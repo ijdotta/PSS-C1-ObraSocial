@@ -24,7 +24,7 @@
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Estado *</label>
-                                                <select class="form-select col" aria-label="Default select example" name="plan"  oninput="this.className='form-select col'" required>
+                                                <select class="form-select col" aria-label="Default select example" name="state"  oninput="this.className='form-select col'" required>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
                                                     <option value="3">Three</option>
@@ -41,103 +41,97 @@
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Consultas médicas *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="medical_consultations" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Consultas médicas domiciliarias *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="home_medical_consultations" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Consulta médica online *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="online_medical_consultations" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Internación *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="hospitalization" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Odontología general *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="general_odontology" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Ortodoncia *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="orthodontics" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Prótesis odontológicas *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="dental_prosthetics" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Implantes odontológicos *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="dental_implants" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Kinesiología *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="kinesiology" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Psicología *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="psychology" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Medicamentos en farmacia *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="drugs_in_pharmacy" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Medicamentos en internación *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="nmedications_in_hospitalame" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Óptica *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="optics" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Cirugías estéticas *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
-                                            </div>
-                                        </p>
-                                        <p>
-                                            <div class="row align-items-start">
-                                                <label class="col">Óptica *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="cosmetic_surgeries" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Análisis clínicos *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="clinical_analysis" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Análisis de diagnóstico *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="diagnostic_analysis" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
 
@@ -148,25 +142,25 @@
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Precio menores de 25 *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="price_under_25" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Precio de 25 a 40 *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="price_from_25_to_40" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Precio de 40 a 60 *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="price_from_40_to_60" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Precio mayores de 60 *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="name" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="price_over_60" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
 
