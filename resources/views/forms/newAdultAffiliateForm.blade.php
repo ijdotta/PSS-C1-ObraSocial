@@ -10,7 +10,7 @@
                         <div class="card-header font-semibold">Formulario dar de alta afiliado</div>
 
                             <div class="card-body">
-                               <form class="form-floating mb-3" action="{{route('addAdultAffiliate')}}" method="POST">
+                               <form class="form-floating mb-3" action="{{route('storeAdultAffiliate')}}" method="POST">
 
                                     @csrf
 
