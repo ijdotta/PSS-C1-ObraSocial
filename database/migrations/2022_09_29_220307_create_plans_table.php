@@ -20,7 +20,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->smallInteger('state');
-
             $table->Integer('medical_consultations');
             $table->Integer('home_medical_consultations');
             $table->Integer('online_medical_consultations');
@@ -28,7 +27,7 @@ return new class extends Migration
             $table->Integer('general_odontology');
             $table->Integer('orthodontics');
             $table->Integer('dental_prosthetics');
-            $table->Integer('dental implants');
+            $table->Integer('dental_implants');
             $table->Integer('kinesiology');
             $table->Integer('psychology');
             $table->Integer('drugs_in_pharmacy');
@@ -37,7 +36,6 @@ return new class extends Migration
             $table->Integer('cosmetic_surgeries');
             $table->Integer('clinical_analysis');
             $table->Integer('diagnostic_analysis');
-            
             $table->Integer('price_under_25');
             $table->Integer('price_from_25_to_40');
             $table->Integer('price_from_40_to_60');
