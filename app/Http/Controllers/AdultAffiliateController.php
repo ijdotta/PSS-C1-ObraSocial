@@ -104,7 +104,23 @@ class AdultAffiliateController extends Controller
      */
     public function update(Request $request, AdultAffiliate $adultAffiliate)
     {
-        //
+        $adultAffiliate->name = $request->get('name');
+        $adultAffiliate->birthdate = $request->get('birthdate');
+        $adultAffiliate->DNI = $request->get('DNI');
+        $adultAffiliate->surname = $request->get('surname');
+        $adultAffiliate->street = $request->get('street');
+        $adultAffiliate->street_number = $request->get('streetNumber');
+        $adultAffiliate->phone_number = $request->get('phone_number');
+        $adultAffiliate->plan = $request->get('plan');
+        $adultAffiliate->wayToPay = $request->get('wayToPay');
+        $adultAffiliate->password = $request->get('password');
+        $adultAffiliate->email = $request->get('email');
+        $adultAffiliate->location = $request->get('location');
+        $adultAffiliate->province = $request->get('province');
+
+        $adultAffiliate->save();
+        
+        return redirect()->route('dashboard');
     }
 
     /**
