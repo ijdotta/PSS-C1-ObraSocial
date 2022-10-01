@@ -38,15 +38,15 @@ class AdultAffiliateController extends Controller
     {
         $name=$request->get('name');
         $surname=$request->get('surname');
-        $dateBirth=$request->get('dateBirth');
+        $birthdate=$request->get('birthdate');
         $DNI=$request->get('DNI');
         $street=$request->get('street');
         $streetNumber=$request->get('streetNumber');
         $phone=$request->get('phone');
         $plan=$request->get('plan');
         $wayToPay=$request->get('wayToPay');
-        $password=$request->get('password1');
-        $passwordAux=$request->get('password2');
+        $password=$request->get('password');
+        $passwordAux=$request->get('passwordConfirmation');
         $email=$request->get('email');
         $location=$request->get('location');
         $province=$request->get('province');
@@ -58,16 +58,16 @@ class AdultAffiliateController extends Controller
         if(AdultAffiliate::where('DNI','=',$DNI)->count() > 0)
             return response()->json(['message' => 'DNI ya registrado'],200); //Hacer vista para cuando ya esta registrado el DNI
         
-        if(!AdultAffiliateController::is_18($dateBirth))
+        if(!AdultAffiliateController::is_18($birthdate))
             return response()->json(['message' => 'Es menor de edad'],200); //Hacer vista para cuando ya se intenta registrar un menor de edad
 
-        AdultAffiliate::storeAdultAffiliate($name, $surname, $dateBirth, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province);
+        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province);
         
         return redirect()->route('dashboard');
     }
 
-    function is_18($dateBirth){
-        $dobObject = new DateTime(date("Y-m-d", strtotime($dateBirth)));
+    function is_18($birthdate){
+        $dobObject = new DateTime(date("Y-m-d", strtotime($birthdate)));
         $nowObject = new DateTime();
         
         return $dobObject < $nowObject ? ($dobObject->diff($nowObject)->y > 18) : false;

@@ -14,14 +14,14 @@ class AdultAffiliate extends Model
         return $this->hasMany(MinorAffiliate::class);
     }
 
-    public static function storeAdultAffiliate($name, $surname, $dateBirth, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province)
+    public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phone, $plan, $wayToPay, $password, $email, $location, $province)
     {
         if (isset($name)) {
             $affiliate = new AdultAffiliate();
 
             $affiliate->name = $name;
-            $affiliate->sur_name = $surname;
-            $affiliate->date_of_birth = $dateBirth;
+            $affiliate->surname = $surname;
+            $affiliate->birthdate = $birthdate;
             $affiliate->DNI = $DNI;
             $affiliate->email = $email;
             $affiliate->password = $password;

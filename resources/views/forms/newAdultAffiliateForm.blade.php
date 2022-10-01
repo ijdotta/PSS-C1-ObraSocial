@@ -28,7 +28,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Fecha de nacimiento *</label>
-                                        <input type="date" class="form-control col" id="floatingInput" name="dateBirth" required>
+                                        <input type="date" class="form-control col" id="floatingInput" name="birthdate" required>
                                     </div>
 
                                     <div div class="row align-items-start">
@@ -90,12 +90,12 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Contraseña *</label>
-                                        <input type="password" class="form-control col" id="floatingInput" name="password1" required>
+                                        <input type="password" class="form-control col" id="floatingInput" name="password" required>
                                     </div>
 
                                     <div class="row align-items-start">
                                         <label class="col">Repetir contraseña *</label>
-                                        <input type="password" class="form-control col" id="floatingInput" name="password2" required>
+                                        <input type="password" class="form-control col" id="floatingInput" name="passwordConfirmation" required>
                                     </div>
 
                                     <div class="d-flex justify-content-end">

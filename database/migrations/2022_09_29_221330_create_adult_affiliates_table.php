@@ -17,8 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name');
-            $table->string('sur_name');
-            $table->date('date_of_birth');
+            $table->string('surname');
+            $table->date('birthdate');
             $table->mediumInteger('DNI')->unique();
             $table->string('email')->unique();
             $table->string('password');
