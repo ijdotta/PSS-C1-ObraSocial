@@ -17,6 +17,21 @@ class PlanController extends Controller
         //
     }
 
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Plan  $plan
+     * @return \Illuminate\Http\Response
+     */
+    public function getAll()
+    {
+
+        $plans=Plan::all();
+
+        return view('queries/showPlans',compact('plans'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,6 +91,7 @@ class PlanController extends Controller
         return redirect()->route('dashboard');
     }
 
+   
     /**
      * Display the specified resource.
      *

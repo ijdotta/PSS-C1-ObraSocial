@@ -28,6 +28,7 @@ Route::resource('employees', EmployeeController::class);
 Route::get('/adult_affiliate/create',[App\Http\Controllers\AdultAffiliateController::class,'create'])->name('createAdultAffiliate');//Redirecciona a la pantalla para cargarlo
 Route::post('/adult_affiliate/store',[App\Http\Controllers\AdultAffiliateController::class,'store'])->name('storeAdultAffiliate');//Lo carga en la DB
 
+Route::get('/plan/all',[App\Http\Controllers\PlanController::class,'getAll'])->name('getAllPlans');
 Route::get('/plan/create',[App\Http\Controllers\PlanController::class,'create'])->name('createPlan');
 Route::post('/plan/store',[App\Http\Controllers\PlanController::class,'store'])->name('storePlan');
 
