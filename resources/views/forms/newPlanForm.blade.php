@@ -107,7 +107,7 @@
                                         <p>
                                             <div class="row align-items-start">
                                                 <label class="col">Medicamentos en internación *</label>
-                                                <input type="number" class="form-control col" id="floatingInput" name="nmedications_in_hospitalame" oninput="this.className='form-control col'" required>
+                                                <input type="number" class="form-control col" id="floatingInput" name="medications_in_hospital" oninput="this.className='form-control col'" required>
                                             </div>
                                         </p>
                                         <p>
