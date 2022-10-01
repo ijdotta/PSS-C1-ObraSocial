@@ -119,11 +119,13 @@ class EmployeeController extends Controller
 
     private function createAddress(Request $request)
     {
-        return Address::create($request->validate([
+        $validated = $request->validate([
             'street' => 'nullable',
             'number' => 'nullable|max:5',
             'city' => 'required|string',
             'province' => 'required|string'
-        ]));
+        ]);
+        
+        return Address::create($validated);
     }
 }
