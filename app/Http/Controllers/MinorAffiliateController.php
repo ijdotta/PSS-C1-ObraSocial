@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MinorAffiliate;
 use Illuminate\Http\Request;
 use DateTime;
+use App\Models\AdultAffiliate;
 
 class MinorAffiliateController extends Controller
 {
