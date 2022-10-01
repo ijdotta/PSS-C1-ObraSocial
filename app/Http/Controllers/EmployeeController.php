@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Employee;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -38,17 +39,22 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedFields = $this->validateEmployee($request);
-        $user = $this->createUser($request);
-        $address = $this->createAddress($request);
+        $employeeFields = $this->validateEmployee($request);
+        $user = User::create($this->validateUser($request));
+        $address = Address::create($this->validateAddress($request));
         
         $fields = array_merge(
-            $validatedFields, 
+            $employeeFields, 
             ['user_id' => $user->id, 'address_id' => $address->id]
         );
 
-        Employee::create($fields);
+        $employee = Employee::create($fields);
+
+        $this->consistencyCheck($employee, $user, $address);
+
         session()->flash('success', 'Empleado creado exitosamente');
+
+        return redirect(route('employees.index'));
     }
 
     /**
@@ -70,7 +76,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employees.edit')->with('employee', $employee);
     }
 
     /**
@@ -82,7 +88,11 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $employee->user()->update($this->validateUser($request));
+        $employee->address()->update($this->validateAddress($request));
+        $employee->update($this->validateEmployee($request));
+
+        return view('employees.index');
     }
 
     /**
@@ -93,7 +103,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $this->deleteModels($employee, $employee->address, $employee->user);
+        return view('employees.index');
     }
 
     private function validateEmployee(Request $request)
@@ -108,24 +119,38 @@ class EmployeeController extends Controller
         ]);
     }
 
-    private function createUser(Request $request) 
+    private function validateUser(Request $request) 
     {
-        return User::create($request->validate([
+        return $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
             'role_id' => 'required'
-        ]));
+        ]);
     }
 
-    private function createAddress(Request $request)
+    private function validateAddress(Request $request)
     {
-        $validated = $request->validate([
+        return $request->validate([
             'street' => 'nullable',
             'number' => 'nullable|max:5',
             'city' => 'required|string',
             'province' => 'required|string'
         ]);
-        
-        return Address::create($validated);
+    }
+
+    
+    private function consistencyCheck(Model $employee, Model $user, Model $address)
+    {
+        if (!isset($employee) || !isset($user) || !isset($address))
+        {
+            $this->tryToDelete($employee);
+            $this->tryToDelete($user);
+            $this->tryToDelete($address);
+        }
+    }
+    
+    private function tryToDelete(Model $model) 
+    {
+        isset($model) && $model->delete();
     }
 }
