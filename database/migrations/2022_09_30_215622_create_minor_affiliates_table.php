@@ -20,6 +20,7 @@ return new class extends Migration
             $table->smallInteger('DNI')->unique();
             $table->date('birthdate');
             $table->integer('phone_number');
+            $table->unsignedBigInteger('adult_affiliate_id');
             $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
