@@ -80,6 +80,7 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        //
+        $plan->delete();
+        return redirect()->route('dashboard');
     }
 }
