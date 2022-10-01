@@ -115,6 +115,7 @@ class AdultAffiliateController extends Controller
      */
     public function destroy(AdultAffiliate $adultAffiliate)
     {
-        //
+        $adultAffiliate->delete();
+        return redirect()->route('dashboard');
     }
 }
