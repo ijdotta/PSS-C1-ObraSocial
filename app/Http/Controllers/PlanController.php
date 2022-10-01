@@ -24,7 +24,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms/newPlanForm');
     }
 
     /**
@@ -35,7 +35,7 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('dashboard');
     }
 
     /**
