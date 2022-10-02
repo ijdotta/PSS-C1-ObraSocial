@@ -5,12 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header font-semibold"><strong>Crear un nuevo empleado</strong></div>
+                    <div class="card-header font-semibold"><strong>Editar empleado</strong></div>
                     <div class="card-body">
 
                         <x-errors-alerts />
 
-                        {{ Form::open(['route' => ['employees.store']]) }}
+                        {{-- {{ Form::open(['route' => ['employees.store']]) }} --}}
+                        {{ Form::model($employee, ['method' => 'PUT', 'route' => ['employees.update', $employee->id]]) }}
 
                         <div class="form-group">
                             {{ Form::label('Nombre') }}
@@ -48,28 +49,28 @@
 
                             <div class="form-group">
                                 {{ Form::label('Calle') }}
-                                {{ Form::text('street', null, ['class' => 'form-control']) }}
+                                {{ Form::text('street', $employee->address->street, ['class' => 'form-control']) }}
                             </div>
 
                             <div class="form-group">
                                 {{ Form::label('Número') }}
-                                {{ Form::number('number', null, ['class' => 'form-control']) }}
+                                {{ Form::number('number', $employee->address->number, ['class' => 'form-control']) }}
                             </div>
 
                             <div class="form-group">
                                 {{ Form::label('Ciudad') }}
-                                {{ Form::text('city', null, ['class' => 'form-control']) }}
+                                {{ Form::text('city', $employee->address->city, ['class' => 'form-control']) }}
                             </div>
 
                             <div class="form-group">
                                 {{ Form::label('Provincia') }}
-                                {{ Form::text('province', null, ['class' => 'form-control']) }}
+                                {{ Form::text('province', $employee->address->province, ['class' => 'form-control']) }}
                             </div>
 
                         </div>
                         <div class="form-group">
                             {{ Form::label('Rol') }}
-                            {{ Form::select('role', $roles, $default_role_id, ['class' => 'form-select']) }}
+                            {{ Form::select('role', $roles, null, ['class' => 'form-select']) }}
                         </div>
 
                         <div class="form-group">
