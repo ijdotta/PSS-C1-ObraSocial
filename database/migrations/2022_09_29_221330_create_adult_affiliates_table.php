@@ -21,7 +21,9 @@ return new class extends Migration
             $table->date('birthdate');
             $table->mediumInteger('DNI')->unique();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('street')->nullable();
             $table->string('street_number')->nullable();
             $table->integer('phone_number')->nullable();
