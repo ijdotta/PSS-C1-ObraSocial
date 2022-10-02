@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             {{ Form::label('Rol') }}
-                            {{ Form::select('role', $roles, $default_role_id, ['class' => 'form-select'])}} 
+                            {{ Form::select('role', $roles, $default_role_id, ['class' => 'form-select']) }}
                         </div>
 
                         <div class="form-group">
@@ -87,6 +87,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
