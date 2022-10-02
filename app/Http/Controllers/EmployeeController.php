@@ -21,7 +21,10 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::paginate(Controller::$RESULT_PAGINATION);
-        return view('employees.index')->with('employees', $employees);
+        $roles = EmployeeRole::array();
+        return view('employees.index')
+                ->with('employees', $employees)
+                ->with('roles', $roles);
     }
 
     /**
@@ -88,7 +91,11 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('employees.edit')->with('employee', $employee);
+        $roles = EmployeeRole::array();
+
+        return view('employees.edit')
+                ->with('employee', $employee)
+                ->with('roles', $roles);
     }
 
     /**
@@ -100,13 +107,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        $employee->user()->update($this->validateUser($request));
+        $employee->user()->update($this->validateUserUpdate($request));
         $employee->address()->update($this->validateAddress($request));
-        $employee->update($this->validateEmployee($request));
+        $employee->update($this->validateEmployeeUpdate($request));
 
-        return view('employees.index');
+        return redirect(route('employees.index'));
     }
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -116,9 +123,9 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $this->deleteModels($employee, $employee->address, $employee->user);
-        return view('employees.index');
+        return redirect(route('employees.index'));
     }
-
+    
     private function validateEmployee(Request $request)
     {
         return $request->validate([
@@ -132,10 +139,31 @@ class EmployeeController extends Controller
         ]);
     }
 
+    private function validateEmployeeUpdate(Request $request)
+    {
+        return $request->validate([
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'date_of_birth' => 'required|date',
+            'DNI' => ['required', 'numeric'],
+            'email' => ['required', 'email'],
+            'phone_number' => 'nullable|max:14',
+            'role' => ['required', Rule::in(EmployeeRole::names())],
+        ]);
+    }
+
     private function validateUser(Request $request)
     {
         return $request->validate([
             'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|min:8|same:password_repeat',
+        ]);
+    }
+
+    private function validateUserUpdate(Request $request)
+    {
+        return $request->validate([
+            'email' => ['required', 'email'],
             'password' => 'required|min:8|same:password_repeat',
         ]);
     }
