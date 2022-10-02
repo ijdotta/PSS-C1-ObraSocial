@@ -11,6 +11,13 @@
 
                             <div class="card-body">
                                
+                               <div class="row align-items-center">
+                                    <button type="button" onClick="location.href='{{route('createPlan')}}'" class="btn btn-outline-success col" aria-expanded="false">
+                                        Agregar plan
+                                    </button>
+                                    <h2>-</h2>
+                                </div>
+
                                 @foreach($plans as $plan)
 
                                     <div class="row align-items-start">
