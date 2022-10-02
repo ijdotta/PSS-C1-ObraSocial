@@ -35,6 +35,9 @@
                                         <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
                                     </li>
                                     <li class="nav-item">

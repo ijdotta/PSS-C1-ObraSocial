@@ -17,7 +17,14 @@ class MinorAffiliateController extends Controller
      */
     public function index()
     {
-        //
+        // $user = auth()->user();
+
+        // if ($user->role_id == Role::Affiliate)
+        //     $minorAffiliates = $user->profile->minorAffiliates;
+        // else
+        $minorAffiliates = MinorAffiliate::all();
+
+        return view('minor_affiliate.index')->with('minorAffiliates', $minorAffiliates);
     }
 
     /**
@@ -27,7 +34,7 @@ class MinorAffiliateController extends Controller
      */
     public function create()
     {
-        return view('forms/newMinorAffiliateForm');
+        return view('minor_affiliate.create');
     }
 
     /**
@@ -61,7 +68,7 @@ class MinorAffiliateController extends Controller
             session()->flash('message', $message);
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('minor_affiliate.index');
     }
 
     function is_minor($birthdate)
@@ -115,6 +122,6 @@ class MinorAffiliateController extends Controller
     public function destroy(MinorAffiliate $minorAffiliate)
     {
         $minorAffiliate->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('minor_affiliate.index');
     }
 }
