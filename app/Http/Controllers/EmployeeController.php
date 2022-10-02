@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Employee;
+use App\Enums\EmployeeRole;
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
@@ -28,9 +31,13 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $roles = EmployeeRole::array();
+        $default_role = EmployeeRole::ADMINISTRATIVE->name;
+        return view('employees.create')
+            ->with('roles', $roles)
+            ->with('default_role_id', $default_role);
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,11 +47,16 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $employeeFields = $this->validateEmployee($request);
-        $user = User::create($this->validateUser($request));
+        $user = User::create(
+            array_merge(
+                $this->validateUser($request),
+                ['role' => UserRole::EMPLOYEE]
+            )
+        );
         $address = Address::create($this->validateAddress($request));
-        
+
         $fields = array_merge(
-            $employeeFields, 
+            $employeeFields,
             ['user_id' => $user->id, 'address_id' => $address->id]
         );
 
@@ -113,18 +125,18 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'lastname' => 'required|string',
             'date_of_birth' => 'required|date',
-            'DNI' => 'required|numeric',
-            'email' => 'required|email',
-            'phone_number' => 'nullable|numeric|max:14',
+            'DNI' => ['required', 'numeric', Rule::unique('employees', 'DNI')],
+            'email' => ['required', 'email', Rule::unique('employees', 'email')],
+            'phone_number' => 'nullable|max:14',
+            'role' => ['required', Rule::in(EmployeeRole::names())],
         ]);
     }
 
-    private function validateUser(Request $request) 
+    private function validateUser(Request $request)
     {
         return $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-            'role_id' => 'required'
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|min:8|same:password_repeat',
         ]);
     }
 
@@ -138,18 +150,17 @@ class EmployeeController extends Controller
         ]);
     }
 
-    
+
     private function consistencyCheck(Model $employee, Model $user, Model $address)
     {
-        if (!isset($employee) || !isset($user) || !isset($address))
-        {
+        if (!isset($employee) || !isset($user) || !isset($address)) {
             $this->tryToDelete($employee);
             $this->tryToDelete($user);
             $this->tryToDelete($address);
         }
     }
-    
-    private function tryToDelete(Model $model) 
+
+    private function tryToDelete(Model $model)
     {
         isset($model) && $model->delete();
     }
