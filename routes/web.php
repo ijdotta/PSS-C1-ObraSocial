@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\EmployeeController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AdultAffiliateController;
+use App\Http\Controllers\MinorAffiliateController;
+use App\Http\Controllers\PlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +28,9 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('employees', EmployeeController::class);
-Route::resource('adult_affiliates', 'App\Http\Controllers\AdultAffiliateController');
-Route::resource('minor_affiliates', 'App\Http\Controllers\MinorAffiliateController');
-Route::resource('plans', 'App\Http\Controllers\PlanController');
+Route::resource('adult_affiliates', AdultAffiliateController::class);
+Route::resource('minor_affiliates', MinorAffiliateController::class);
+Route::resource('plans', PlanController::class);
 
 //Esto de aca abajo eventualmente tiene que ser borrado, se hace automatico con las lineas de arriba.
 Route::get('/adult_affiliate/create',[App\Http\Controllers\AdultAffiliateController::class,'create'])->name('createAdultAffiliate');//Redirecciona a la pantalla para cargarlo

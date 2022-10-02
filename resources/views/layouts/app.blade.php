@@ -35,16 +35,16 @@
                                         <a class="nav-link" href="#">Inicio<span class="sr-only"></span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('adult_affiliates.index')}}">Afiliados</a>
+                                        <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Empleados</a>
+                                        <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url('/plan/all')}}">Planes</a>
+                                        <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact">Mi usuario</a>
+                                        <a class="nav-link" href="#">Mi usuario</a>
                                     </li>
                                 </ul>
                         </header>
