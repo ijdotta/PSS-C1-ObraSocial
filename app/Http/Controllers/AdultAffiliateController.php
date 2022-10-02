@@ -15,6 +15,9 @@ class AdultAffiliateController extends Controller
      */
     public function index()
     {
+        $adultAffiliates = AdultAffiliate::all();
+
+        return view('adult_affiliate.index')->with('adultAffiliates', $adultAffiliates);
     }
 
     /**
@@ -24,7 +27,7 @@ class AdultAffiliateController extends Controller
      */
     public function create()
     {
-        return view('forms/newAdultAffiliateForm');
+        return view('adult_affiliate.create');
     }
 
     /**

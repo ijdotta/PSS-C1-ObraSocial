@@ -24,7 +24,11 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('employees', EmployeeController::class);
+Route::resource('adult_affiliates', 'App\Http\Controllers\AdultAffiliateController');
+Route::resource('minor_affiliates', 'App\Http\Controllers\MinorAffiliateController');
+Route::resource('plans', 'App\Http\Controllers\PlanController');
 
+//Esto de aca abajo eventualmente tiene que ser borrado, se hace automatico con las lineas de arriba.
 Route::get('/adult_affiliate/create',[App\Http\Controllers\AdultAffiliateController::class,'create'])->name('createAdultAffiliate');//Redirecciona a la pantalla para cargarlo
 Route::post('/adult_affiliate/store',[App\Http\Controllers\AdultAffiliateController::class,'store'])->name('storeAdultAffiliate');//Lo carga en la DB
 

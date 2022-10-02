@@ -14,6 +14,11 @@ class AdultAffiliate extends Model
         return $this->hasMany(MinorAffiliate::class);
     }
 
+    public function selectedPlan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
+
     public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province)
     {
         if (isset($name)) {

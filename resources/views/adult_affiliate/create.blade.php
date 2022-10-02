@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content_header')
+    <h1>Agregar nuevo afiliado</h1>
+@stop
 
+@section('content')
     <div class="pt-5 container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card">
-       
-                        <div class="card-header font-semibold">Formulario dar de alta afiliado</div>
-
+                    <div class="card"> 
                             <div class="card-body">
                                <form class="form-floating mb-3" action="{{route('storeAdultAffiliate')}}" method="POST">
 
@@ -100,10 +100,8 @@
 
                                     <div class="d-flex justify-content-end">
                                     <div class="pt-2">
-                                        <button type="submit" class="pe-2 btn btn-outline-success">Confirmar</button>
-                                        <button type="button" onClick="location.href='{{route('dashboard')}}'" class="btn btn-outline-danger" aria-expanded="false">
-                                            Cancelar
-                                        </button>
+                                        @include('components.buttons.confirm')
+                                        @include('components.buttons.cancel', ['route' => 'adult_affiliates.index'])
                                     </div>
                                 </div>
                                 </form>
