@@ -19,6 +19,29 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->smallInteger('state');
+            $table->Integer('medical_consultations');
+            $table->Integer('home_medical_consultations');
+            $table->Integer('online_medical_consultations');
+            $table->Integer('hospitalization');
+            $table->Integer('general_odontology');
+            $table->Integer('orthodontics');
+            $table->Integer('dental_prosthetics');
+            $table->Integer('dental_implants');
+            $table->Integer('kinesiology');
+            $table->Integer('psychology');
+            $table->Integer('drugs_in_pharmacy');
+            $table->Integer('medications_in_hospital');
+            $table->Integer('optics');
+            $table->Integer('cosmetic_surgeries');
+            $table->Integer('clinical_analysis');
+            $table->Integer('diagnostic_analysis');
+            $table->Integer('price_under_25');
+            $table->Integer('price_from_25_to_40');
+            $table->Integer('price_from_40_to_60');
+            $table->Integer('price_over_60');
+
+
         });
     }
 

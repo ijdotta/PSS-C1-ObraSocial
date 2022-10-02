@@ -13,15 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('minor_affiliates', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('surname');
-            $table->smallInteger('DNI')->unique();
-            $table->date('birthdate');
-            $table->integer('phone_number');
-            $table->unsignedBigInteger('adult_affiliate_id');
-            $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('minor_affiliates');
+        Schema::dropIfExists('roles');
     }
 };

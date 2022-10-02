@@ -26,6 +26,29 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                        <!-- NAVBAR -->
+                        <header>
+                            <nav class="navbar navbar-expand-lg">
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">Inicio<span class="sr-only"></span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/adult_affiliate/create')}}">Afiliados</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Empleados</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/plan/all')}}">Planes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact">Mi usuario</a>
+                                    </li>
+                                </ul>
+                        </header>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
