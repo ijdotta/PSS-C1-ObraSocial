@@ -1,25 +1,20 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content_header')
+    <h1>Planes</h1>
+@stop
 
+@section('content')
     <div class="pt-5 container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-       
-                        <div class="card-header font-semibold">Planes</div>
-
-                            <div class="card-body">
-                               
+                            <div class="card-body">                               
                                <div class="row align-items-center">
-                                    <button type="button" onClick="location.href='{{route('createPlan')}}'" class="btn btn-outline-success col" aria-expanded="false">
-                                        Agregar plan
-                                    </button>
+                               @include('components.buttons.add', ['route' => 'plans.create', 'buttonText'=>'Agregar Plan'])
                                     <h2>-</h2>
                                 </div>
-
                                 @foreach($plans as $plan)
-
                                     <div class="row align-items-start">
                                         <label class="col">Nombre </label>
                                         <input type="text" value={{$plan->name}} class="col" id="floatingInput" name="name" disabled>
@@ -43,12 +38,10 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <button type="button" onClick="location.href='{{route('dashboard')}}'" class="btn btn-outline-danger col" aria-expanded="false">
+                                        <a type="button" href="{{route('plans.index')}}'" class="btn btn-outline-danger col" aria-expanded="false">
                                             Modificar estado
-                                        </button>
-                                        <button type="button" onClick="location.href='{{route('dashboard')}}'" class="btn btn-outline-primary col" aria-expanded="false">
-                                            Eliminar
-                                        </button>
+                                        </a>
+                                        @include('components.buttons.delete', ['element' => $plan, 'route' => 'plans.destroy', 'buttonText' => 'Eliminar'])
                                     </div>
 
 

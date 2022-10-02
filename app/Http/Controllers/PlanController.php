@@ -14,23 +14,11 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        //$plans=Plan::all();
+        $plans = [];
+
+        return view('plan.index')->with('plans', $plans);
     }
-
-     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Plan  $plan
-     * @return \Illuminate\Http\Response
-     */
-    public function getAll()
-    {
-
-        $plans=Plan::all();
-
-        return view('queries/showPlans',compact('plans'));
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +27,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        return view('forms/newPlanForm');
+        return view('plan.create');
     }
 
     /**
@@ -88,7 +76,7 @@ class PlanController extends Controller
             $diagnostic_analysis, $price_under_25, $price_from_25_to_40, $price_from_40_to_60, $price_over_60
         );
 
-        return redirect()->route('dashboard');
+        return redirect()->route('plan.index');
     }
 
    
@@ -135,6 +123,6 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         $plan->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('plan.index');
     }
 }
