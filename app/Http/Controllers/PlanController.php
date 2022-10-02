@@ -14,8 +14,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //$plans=Plan::all();
-        $plans = [];
+        $plans=Plan::all();
 
         return view('plan.index')->with('plans', $plans);
     }
