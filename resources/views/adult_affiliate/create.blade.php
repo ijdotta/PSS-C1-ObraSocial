@@ -10,7 +10,7 @@
                 <div class="col-md-8">
                     <div class="card"> 
                             <div class="card-body">
-                               <form class="form-floating mb-3" action="{{route('storeAdultAffiliate')}}" method="POST">
+                               <form class="form-floating mb-3" action="{{route('adult_affiliates.store')}}" method="POST">
 
                                     @csrf
 
