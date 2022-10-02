@@ -65,7 +65,7 @@ class AdultAffiliateController extends Controller
 
         AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('adult_affiliate.index');
     }
 
     function is_18($birthdate)
@@ -123,7 +123,7 @@ class AdultAffiliateController extends Controller
 
         $adultAffiliate->save();
         
-        return redirect()->route('dashboard');
+        return redirect()->route('adult_affiliate.index');
     }
 
     /**
@@ -135,6 +135,6 @@ class AdultAffiliateController extends Controller
     public function destroy(AdultAffiliate $adultAffiliate)
     {
         $adultAffiliate->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('adult_affiliate.index');
     }
 }
