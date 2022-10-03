@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <form id="regForm" action="{{route('plans.create')}}" method="POST">
+                <form id="regForm" action="{{route('plans.store')}}" method="POST">
                     @csrf
 
                     <!-- One "tab" for each step in the form: -->

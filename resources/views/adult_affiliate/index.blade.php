@@ -24,11 +24,11 @@
                 <td class="">{{$adultAffiliate->name}}</td>
                 <td class="">{{$adultAffiliate->surname}}</td>
                 <td class="">{{$adultAffiliate->DNI}}</td>
-                <td class="">{{$adultAffiliate->selectedPlan->name}}</td>
+                Poner el plan aqui
                 <td class="">{{$adultAffiliate->way_to_pay}}</td>
                 <td class="text-center">
-                @include('components.buttons.edit', ['element' => $adultAffiliate, 'route' => 'adult_affiliates.edit'])
-                @include('components.buttons.delete', ['element' => $adultAffiliate, 'route' => 'adult_affiliates.destroy'])
+                @include('components.buttons.edit', ['element' => $adultAffiliate, 'route' => 'adult_affiliates.edit','buttonText'=>'Editar afiliado'])
+                @include('components.buttons.delete', ['element' => $adultAffiliate, 'route' => 'adult_affiliates.destroy','buttonText'=>'Eliminar afiliado'])
                 </td>
             </tr>
             @endforeach

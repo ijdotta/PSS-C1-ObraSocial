@@ -75,7 +75,7 @@ class PlanController extends Controller
             $diagnostic_analysis, $price_under_25, $price_from_25_to_40, $price_from_40_to_60, $price_over_60
         );
 
-        return redirect()->route('plan.index');
+        return redirect()->route('plans.index');
     }
 
    
@@ -122,6 +122,6 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         $plan->delete();
-        return redirect()->route('plan.index');
+        return redirect()->route('plans.index');
     }
 }

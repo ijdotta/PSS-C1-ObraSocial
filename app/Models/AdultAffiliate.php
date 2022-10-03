@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class AdultAffiliate extends Model
 {
@@ -29,7 +30,6 @@ class AdultAffiliate extends Model
             $affiliate->birthdate = $birthdate;
             $affiliate->DNI = $DNI;
             $affiliate->email = $email;
-            $affiliate->password = $password;
             $affiliate->street = $street;
             $affiliate->street_number = $streetNumber;
             $affiliate->phone_number = $phoneNumber;
@@ -37,6 +37,10 @@ class AdultAffiliate extends Model
             $affiliate->way_to_pay = $wayToPay;
             $affiliate->location = $location;
             $affiliate->province = $province;
+
+            $user_id=User::create_returnId($name, 'Cliente', $email, $password);
+
+            $affiliate->user_id = $user_id;
 
             $affiliate->save();
         }

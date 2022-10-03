@@ -53,4 +53,19 @@ class User extends Authenticatable
             set: fn ($value) => bcrypt($value),
         );
     }
+
+    public static function create_returnId($name, $role, $email, $password){
+
+        $user= new User();
+
+        $user->name=$name;
+        $user->role=$role;
+        $user->email=$email;
+        $user->password=$password;
+
+        $user->save();
+        
+        return $user->id;
+    }
+
 }

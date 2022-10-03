@@ -71,8 +71,7 @@
                                     <div class="row align-items-start">
                                         <label class="col">Plan seleccionado *</label>
                                         <select class="form-select col" aria-label="Default select example" name="plan" required>
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
+                                            <option selected value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
                                         </select>
@@ -81,8 +80,7 @@
                                     <div class="row align-items-start">
                                         <label class="col">Forma de pago *</label>
                                         <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
+                                            <option selected value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option>
                                         </select>
