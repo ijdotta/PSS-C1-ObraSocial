@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
     {
 
         User::create([
+            'name' => 'fry',
             'role' => UserRole::EMPLOYEE->name,
             'email' => 'admin@os.com',
             'password' => '1234'
@@ -36,4 +37,5 @@ class DatabaseSeeder extends Seeder
                 ];})
                 ->create();
     }
+    
 }
