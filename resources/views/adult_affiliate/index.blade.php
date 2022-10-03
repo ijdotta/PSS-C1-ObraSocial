@@ -5,7 +5,8 @@
 @stop
 
 @section('content')
-    @include('components.buttons.add', ['route' => 'adult_affiliates.create'])
+    
+    @include('components.buttons.add', ['route' => 'adult_affiliates.create', 'buttonText' => 'Agregar afiliado'])
     <table id="productos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
         <thead class="bg-primary text-white">
             <tr>
