@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    @include('components.buttons.add', ['route' => 'minor_affiliates.create'])
+    @include('components.buttons.add', ['route' => 'minor_affiliates.create', 'buttonText' => 'Agregar menor'])
     <table id="productos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
         <thead class="bg-primary text-white">
             <tr>
@@ -27,7 +27,7 @@
                 <td class="">{{$minorAffiliate->phone_number}}</td>
                 <td class="text-center">
                 @include('components.buttons.edit', ['element' => $minorAffiliate, 'route' => 'minor_affiliates.edit'])
-                @include('components.buttons.delete', ['element' => $minorAffiliate, 'route' => 'minor_affiliates.destroy'])
+                @include('components.buttons.delete', ['element' => $minorAffiliate, 'route' => 'minor_affiliates.destroy', 'buttonText' => 'Eliminar'])
                 </td>
             </tr>
             @endforeach
