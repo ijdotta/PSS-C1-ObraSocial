@@ -71,18 +71,18 @@
                                     <div class="row align-items-start">
                                         <label class="col">Plan seleccionado *</label>
                                         <select class="form-select col" aria-label="Default select example" name="plan" required>
-                                            <option selected value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($planesEnUso as $plan)
+                                                <option selected value={{$plan->id}}>{{$plan->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="row align-items-start">
                                         <label class="col">Forma de pago *</label>
                                         <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
-                                            <option selected value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option selected value="Mensual">Mensual</option>
+                                            <option value="Semestral">Semestral</option>
+                                            <option value="Anual">Anual</option>
                                         </select>
                                     </div>
 

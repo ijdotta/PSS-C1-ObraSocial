@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdultAffiliate;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use DateTime;
 
@@ -27,7 +28,9 @@ class AdultAffiliateController extends Controller
      */
     public function create()
     {
-        return view('adult_affiliate.create');
+        $planesEnUso=Plan::where('state', '=', 'En_uso')->get();
+
+        return view('adult_affiliate.create',compact('planesEnUso'));
     }
 
     /**

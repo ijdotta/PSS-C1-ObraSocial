@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedBigInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans')->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->smallInteger('way_to_pay');
+            $table->string('way_to_pay');
             $table->string('location');
             $table->string('province');
         });

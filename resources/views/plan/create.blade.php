@@ -25,9 +25,7 @@
                         <div class="row align-items-start">
                             <label class="col">Estado *</label>
                             <select class="form-select col" aria-label="Default select example" name="state" oninput="this.className='form-select col'" required>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="Nuevo" selected>Nuevo</option>
                             </select>
                         </div>
                         </p>

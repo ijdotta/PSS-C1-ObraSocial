@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->smallInteger('state');
+            $table->string('state');
             $table->Integer('medical_consultations');
             $table->Integer('home_medical_consultations');
             $table->Integer('online_medical_consultations');
