@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
@@ -38,7 +39,7 @@ class AdultAffiliate extends Model
             $affiliate->location = $location;
             $affiliate->province = $province;
 
-            $user_id=User::create_returnId($name, 'Cliente', $email, $password);
+            $user_id=User::create_returnId($name, UserRole::AFFILIATE->name, $email, $password);
 
             $affiliate->user_id = $user_id;
 
