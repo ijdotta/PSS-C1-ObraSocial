@@ -53,7 +53,7 @@
                         @endif
                         @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE" || Auth::user()->role=="EMPLOYEE")
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Mi usuario</a>
+                                <a class="nav-link"  @if(Auth::user()->role=="AFFILIATE") href="{{route('myUserAffiliate',Auth::user()->id)}}" @endif>Mi usuario</a>
                             </li>
                         @endif
                     </ul>
