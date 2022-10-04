@@ -76,6 +76,41 @@ class AdultAffiliateController extends Controller
         return redirect()->route('adult_affiliates.index');
     }
 
+    public function storeRegistro(Request $request)
+    {
+        $name = $request->get('name');
+        $surname = $request->get('surname');
+        $birthdate = $request->get('birthdate');
+        $DNI = $request->get('DNI');
+        $street = $request->get('street');
+        $streetNumber = $request->get('streetNumber');
+        $phoneNumber = $request->get('phoneNumber');
+        $plan = $request->get('plan');
+        $wayToPay = $request->get('wayToPay');
+        $password = $request->get('password');
+        $passwordAux = $request->get('passwordConfirmation');
+        $email = $request->get('email');
+        $location = $request->get('location');
+        $province = $request->get('province');
+
+
+        if ($password != $passwordAux)
+            return response()->json(['message' => 'contraseña incorrecta'], 200); //Hacer vista para cuando la password no coincide
+
+        if (AdultAffiliate::where('DNI', '=', $DNI)->count() > 0)
+            return response()->json(['message' => 'ya hay un afiliado con ese DNI'], 200); //Hacer vista para cuando ya esta registrado el DNI
+
+            if (AdultAffiliate::where('email', '=', $email)->count() > 0)
+            return response()->json(['message' => 'Ya hay un afiliado con ese email'], 200); //Hacer vista para cuando ya esta registrado el mail
+
+        if (!AdultAffiliateController::is_18($birthdate))
+            return response()->json(['message' => 'El afiliado ingresado es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
+
+        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
+
+        return view('dashboard');
+    }
+
     function is_18($birthdate)
     {
         $dobObject = new DateTime(date("Y-m-d", strtotime($birthdate)));
