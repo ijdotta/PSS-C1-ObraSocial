@@ -19,9 +19,7 @@ class MinorAffiliateController extends Controller
     public function index()
     {
         $user = auth()->user();
-
-        $minorAffiliates = MinorAffiliate::all();
-
+        
         if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
             $minorAffiliates = $user->profile->minorAffiliates;
         } else {            
