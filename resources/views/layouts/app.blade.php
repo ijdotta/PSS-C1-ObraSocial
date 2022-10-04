@@ -1,26 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-        <script src="https://kit.fontawesome.com/cb98da7190.js" crossorigin="anonymous"></script>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Scripts -->
-        @vite(['public/css/app.css', 'public/js/app.js'])
-    </head>
+    <title>Sanar</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+
+</head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
-             
+                @auth
+                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mi usuario</a>
+                        </li>
+                    </ul>
+                    
+                @endauth
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -28,32 +54,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
-                        <!-- NAVBAR -->
-                        <header>
-                            <nav class="navbar navbar-expand-lg">
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Mi usuario</a>
-                                    </li>
-                                </ul>
-                        </header>
 
                     </ul>
 
@@ -102,12 +102,10 @@
                     </div>
                 </div>
             </div>
-            @yield('content_header')
+            
             @yield('content')
         </main>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
+    
 </body>
 </html>
