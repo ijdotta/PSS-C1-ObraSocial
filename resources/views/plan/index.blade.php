@@ -38,13 +38,11 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <a type="button" href="{{route('plans.index')}}'" class="btn btn-outline-danger col" aria-expanded="false">
-                                            Modificar estado
-                                        </a>
+                                        <form class="pe-1" action="{{route('plans.edit',$plan)}}" method="GET">
+                                            <button type="submit" class="btn btn-outline-danger col">Modificar</button>
+                                        </form>
                                         @include('components.buttons.delete', ['element' => $plan, 'route' => 'plans.destroy', 'buttonText' => 'Eliminar'])
                                     </div>
-
-
 
                                     <!-- Modal Prestaciones-->
                                     <div class="modal fade" id="Prestaciones{{$plan->name}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -125,7 +123,6 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-                                            <button type="button" class="btn btn-primary">Modificar</button>
                                         </div>
                                         </div>
                                     </div>
@@ -159,7 +156,6 @@
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-                                                <button type="button" class="btn btn-primary">Modificar</button>
                                             </div>
                                             </div>
                                         </div>
