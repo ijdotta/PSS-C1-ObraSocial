@@ -26,24 +26,36 @@
             <div class="container">
                 @auth
                      <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Mi usuario</a>
-                        </li>
+                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE" || Auth::user()->role=="EMPLOYEE")
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="EMPLOYEE")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->role=="ADMIN")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->role=="ADMIN")
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE" || Auth::user()->role=="EMPLOYEE")
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Mi usuario</a>
+                            </li>
+                        @endif
                     </ul>
                     
                 @endauth
