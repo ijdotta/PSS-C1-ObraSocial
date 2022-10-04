@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        
         User::create([
             'name' => 'fry',
             'role' => UserRole::EMPLOYEE->name,
@@ -36,6 +36,11 @@ class DatabaseSeeder extends Seeder
                     // 'plan_id' => function () { return Plan::pluck('id')->random(); }
                 ];})
                 ->create();
+
+        $this->call(PlanTestAfiliado::class);
+        $this->call(AdultAffiliatesSeeder::class);
+        $this->call(MinorAffiliatesSeeder::class);
+        
     }
     
 }
