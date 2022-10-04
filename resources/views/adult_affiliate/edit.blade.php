@@ -86,9 +86,15 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Contraseña *</label>
-                                        <input type="password" value={{$adultAffiliate->password}} class="form-control col" id="floatingInput" name="password" required>
+                                        <input type="password" 
+                                            @auth
+                                            @if(Auth::user()->role!="AFFILIATE")
+                                                disabled
+                                            @endif
+                                            @endauth 
+                                                value={{$adultAffiliate->password}} class="form-control col" id="floatingInput" name="password" required>
                                     </div>
-
+                                    
                                     <div class="d-flex justify-content-end">
                                     <div class="pt-2">
                                         @include('components.buttons.confirm')
