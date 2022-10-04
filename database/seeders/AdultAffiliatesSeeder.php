@@ -26,7 +26,7 @@ class AdultAffiliatesSeeder extends Seeder
         $Adulto1->street_number='816';
         $Adulto1->phone_number=5413311682;
         $Adulto1->plan_id=1;
-        $Adulto1->way_to_pay=0;
+        $Adulto1->way_to_pay="Anual";
         $Adulto1->location='CABA';
         $Adulto1->province='Buenos Aires';
         $Adulto1->save();
@@ -42,7 +42,7 @@ class AdultAffiliatesSeeder extends Seeder
         $Adulto2->street_number='3757';
         $Adulto2->phone_number=5186729688;
         $Adulto2->plan_id=1;
-        $Adulto2->way_to_pay=1;
+        $Adulto2->way_to_pay="Semestral";
         $Adulto2->location='Quest';
         $Adulto2->province='Misiones';
         $Adulto2->save();
@@ -58,7 +58,7 @@ class AdultAffiliatesSeeder extends Seeder
         $Adulto3->street_number='2480';
         $Adulto3->phone_number=5413311682;
         $Adulto3->plan_id=1;
-        $Adulto3->way_to_pay=2;
+        $Adulto3->way_to_pay="Mensual";
         $Adulto3->location='Pasadena';
         $Adulto3->province='Santa Fe';
         $Adulto3->save();
