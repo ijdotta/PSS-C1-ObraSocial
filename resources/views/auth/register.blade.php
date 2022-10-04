@@ -1,64 +1,128 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            <!-- Name -->
-            <div>
-                <x-input-label for="name" :value="__('Name')" />
+    <title>Sanar</title>
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+    <body>
+<div class="pt-5 container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card"> 
+                            <div class="card-body">
+                               <form class="form-floating mb-3" action="{{route('storeRegistro')}}" method="POST">
+
+                                    @csrf
+
+                                   <p for="floatingInput">Los campos con * son obligatorios</p>
+
+                                   <div class="row align-items-start">
+                                        <label class="col">Nombre *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="name" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Apellido *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="surname" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Fecha de nacimiento *</label>
+                                        <input type="date" class="form-control col" id="floatingInput" name="birthdate" required>
+                                    </div>
+
+                                    <div div class="row align-items-start">
+                                        <p class="col">DNI *</p>
+                                        <input type="number" class="form-control col" id="floatingInput" name="DNI" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <p class="col">email *</p>
+                                        <input type="email" class="form-control col" id="floatingInput" name="email" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <p class="col">Direccíon</p>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Calle</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="street">
+                                        <label class="col">Número</label>
+                                        <input type="number" class="form-control col" id="floatingInput" name="streetNumber">
+
+                                    </div>
+                                   
+                                    <div class="row align-items-start">
+                                        <label class="col">Localidad *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="location" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Proviencia *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="province" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Telefono *</label>
+                                        <input type="text" class="form-control col" id="floatingInput" name="phoneNumber" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Plan seleccionado *</label>
+                                        <select class="form-select col" aria-label="Default select example" name="plan" required>
+                                            @foreach ($planesEnUso as $plan)
+                                                <option selected value={{$plan->id}}>{{$plan->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Forma de pago *</label>
+                                        <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
+                                            <option selected value="Mensual">Mensual</option>
+                                            <option value="Semestral">Semestral</option>
+                                            <option value="Anual">Anual</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Contraseña *</label>
+                                        <input type="password" class="form-control col" id="floatingInput" name="password" required>
+                                    </div>
+
+                                    <div class="row align-items-start">
+                                        <label class="col">Repetir contraseña *</label>
+                                        <input type="password" class="form-control col" id="floatingInput" name="passwordConfirmation" required>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                    <div class="pt-2">
+                                        @include('components.buttons.confirm')
+                                        @include('components.buttons.cancel', ['route' => 'welcome'])
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
-
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-primary-button class="ml-4">
-                    {{ __('Register') }}
-                </x-primary-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>
+</body>
+</html>
