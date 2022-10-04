@@ -20,27 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
-        User::create([
-            'name' => 'fry',
-            'role' => UserRole::EMPLOYEE->name,
-            'email' => 'admin@os.com',
-            'password' => '1234'
-        ]);
-
-        Employee::factory(10)
-                ->state(function () { return [
-                    'user_id' => function () { return User::factory(1)->createOne(['role' => EmployeeRole::ADMIN->name])->id; },
-                    'address_id' => function () { return Address::factory(1)->createOne()->id; },
-                    // 'plan_id' => function () { return Plan::factory(1)->createOne()->id; }
-                    // 'plan_id' => function () { return Plan::pluck('id')->random(); }
-                ];})
-                ->create();
-
+        $this->call(UserSeeder::class);
+        $this->call(AddressSeeder::class);
+        $this->call(EmployeeSeeder::class);
         $this->call(PlanTestAfiliado::class);
         $this->call(AdultAffiliatesSeeder::class);
-        $this->call(MinorAffiliatesSeeder::class);
-        
+        $this->call(MinorAffiliatesSeeder::class);       
     }
     
 }
