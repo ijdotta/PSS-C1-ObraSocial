@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DateTime;
 use App\Models\AdultAffiliate;
 use Illuminate\Database\QueryException;
+use App\Enums\UserRole;
 
 class MinorAffiliateController extends Controller
 {
@@ -17,12 +18,15 @@ class MinorAffiliateController extends Controller
      */
     public function index()
     {
-        // $user = auth()->user();
+        $user = auth()->user();
 
-        // if ($user->role_id == Role::Affiliate)
-        //     $minorAffiliates = $user->profile->minorAffiliates;
-        // else
         $minorAffiliates = MinorAffiliate::all();
+
+        if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
+            $minorAffiliates = $user->profile->minorAffiliates;
+        } else {            
+            $minorAffiliates = MinorAffiliate::all();
+        }   
 
         return view('minor_affiliate.index')->with('minorAffiliates', $minorAffiliates);
     }
@@ -34,7 +38,9 @@ class MinorAffiliateController extends Controller
      */
     public function create()
     {
-        return view('minor_affiliate.create');
+        $user = auth()->user();
+        $perfil = $user->profile->name.'-----'.$user->role;
+        return view('minor_affiliate.create')->with('jajas', $perfil);
     }
 
     /**
@@ -44,13 +50,20 @@ class MinorAffiliateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {        
+        $user = auth()->user();
+
         $name = $request->get('name');
         $surname = $request->get('surname');
         $birthdate = $request->get('birthdate');
         $DNI = $request->get('DNI');
         $phoneNumber = $request->get('phoneNumber');
-        $adultAffiliateID = $request->get('adultAffiliateID');
+        if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
+            $adultAffiliate = $user->profile;
+            $adultAffiliateID = $adultAffiliate->id;
+        } else {            
+            $adultAffiliateID = $request->get('adultAffiliateID');
+        }        
 
         if (MinorAffiliate::where('DNI', '=', $DNI)->count() > 0)
             return response()->json(['message' => 'DNI ya registrado'], 200); //Hacer vista para cuando ya esta registrado el DNI
@@ -61,14 +74,14 @@ class MinorAffiliateController extends Controller
         if (AdultAffiliate::where('ID', '=', $adultAffiliateID)->count() < 1)
             return response()->json(['message' => 'El ID del mayor responsable no es valido'], 200); //Corroborar que funcione cuando ya tengamos adultos
 
-        try{
+        try {
             MinorAffiliate::storeMinorAffiliate($name, $surname, $birthdate, $DNI, $phoneNumber, $adultAffiliateID);
-        } catch (QueryException $ex){
+        } catch (QueryException $ex) {
             $message = 'hubo un error';
             session()->flash('message', $message);
         }
 
-        return redirect()->route('minor_affiliate.index');
+        return redirect()->route('minor_affiliates.index');
     }
 
     function is_minor($birthdate)
@@ -122,6 +135,6 @@ class MinorAffiliateController extends Controller
     public function destroy(MinorAffiliate $minorAffiliate)
     {
         $minorAffiliate->delete();
-        return redirect()->route('minor_affiliate.index');
+        return redirect()->route('minor_affiliates.index');
     }
 }

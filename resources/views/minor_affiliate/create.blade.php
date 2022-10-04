@@ -2,6 +2,7 @@
 
 @section('content_header')
     <h1>Agregar nuevo menor de edad</h1>
+    <h1><?= $jajas ?></h1>
 @stop
 
 @section('content')
@@ -42,7 +43,7 @@
                         </div>
 
                         <div class="row align-items-start">
-                            <label class="col">ID Mayor responsable *</label>
+                            <label class="col">ID Mayor responsable * (SOLO ADMIN)</label>
                             <input type="number" class="form-control col" id="floatingInput" name="adultAffiliateID" required>
                         </div>
 
