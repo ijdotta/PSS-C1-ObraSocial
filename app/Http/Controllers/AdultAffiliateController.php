@@ -63,10 +63,13 @@ class AdultAffiliateController extends Controller
             return response()->json(['message' => 'contraseña incorrecta'], 200); //Hacer vista para cuando la password no coincide
 
         if (AdultAffiliate::where('DNI', '=', $DNI)->count() > 0)
-            return response()->json(['message' => 'DNI ya registrado'], 200); //Hacer vista para cuando ya esta registrado el DNI
+            return response()->json(['message' => 'ya hay un afiliado con ese DNI'], 200); //Hacer vista para cuando ya esta registrado el DNI
+
+            if (AdultAffiliate::where('email', '=', $email)->count() > 0)
+            return response()->json(['message' => 'Ya hay un afiliado con ese email'], 200); //Hacer vista para cuando ya esta registrado el mail
 
         if (!AdultAffiliateController::is_18($birthdate))
-            return response()->json(['message' => 'Es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
+            return response()->json(['message' => 'El afiliado ingresado es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
 
         AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
 
