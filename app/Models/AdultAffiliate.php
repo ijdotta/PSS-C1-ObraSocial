@@ -16,7 +16,7 @@ class AdultAffiliate extends Model
         return $this->hasMany(MinorAffiliate::class);
     }
 
-    public function selectedPlan()
+    public function plan()
     {
         return $this->belongsTo(Plan::class);
     }

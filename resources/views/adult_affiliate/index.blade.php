@@ -24,7 +24,7 @@
                 <td class="">{{$adultAffiliate->name}}</td>
                 <td class="">{{$adultAffiliate->surname}}</td>
                 <td class="">{{$adultAffiliate->DNI}}</td>
-                Poner el plan aqui
+                <td class="">{{$adultAffiliate->plan->name}}</td>
                 <td class="">{{$adultAffiliate->way_to_pay}}</td>
                 <td class="text-center">
                 @include('components.buttons.edit', ['element' => $adultAffiliate, 'route' => 'adult_affiliates.edit','buttonText'=>'Editar afiliado'])
