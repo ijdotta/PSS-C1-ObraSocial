@@ -80,4 +80,20 @@ class User extends Authenticatable
             return $this->hasOne(Employee::class, 'user_id');
         }
     }
+
+    /**
+     * Warning: may be null. First check $this->role == UserRole::EMPLOYEE->name
+     */
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    /**
+     * Warning: may be null. First check $this->role == UserRole::AFFILIATE->name
+     */
+    public function adultAffiliate()
+    {
+        return $this->hasOne(AdultAffiliate::class);
+    }
 }
