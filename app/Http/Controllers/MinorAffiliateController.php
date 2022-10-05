@@ -66,7 +66,7 @@ class MinorAffiliateController extends Controller
         if (MinorAffiliate::where('DNI', '=', $DNI)->count() > 0)
             return response()->json(['message' => 'DNI ya registrado'], 200); //Hacer vista para cuando ya esta registrado el DNI
 
-        if (!MinorAffiliateController::is_minor($birthdate))
+        if (MinorAffiliateController::is_minor($birthdate))
             return response()->json(['message' => 'Es mayor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un mayor de edad
 
         if (AdultAffiliate::where('ID', '=', $adultAffiliateID)->count() < 1)
