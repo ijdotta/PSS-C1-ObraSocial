@@ -53,7 +53,7 @@ class EmployeeController extends Controller
         $user = User::create(
             array_merge(
                 $this->validateUser($request),
-                ['role' => UserRole::EMPLOYEE]
+                ['role' => UserRole::EMPLOYEE->name]
             )
         );
         $address = Address::create($this->validateAddress($request));
@@ -155,6 +155,7 @@ class EmployeeController extends Controller
     private function validateUser(Request $request)
     {
         return $request->validate([
+            'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => 'required|min:8|same:password_repeat',
         ]);
@@ -163,6 +164,7 @@ class EmployeeController extends Controller
     private function validateUserUpdate(Request $request)
     {
         return $request->validate([
+            'name' => 'required|string',
             'email' => ['required', 'email'],
             'password' => 'required|min:8|same:password_repeat',
         ]);
