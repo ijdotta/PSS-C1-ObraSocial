@@ -53,9 +53,10 @@ class EmployeeController extends Controller
         $user = User::create(
             array_merge(
                 $this->validateUser($request),
-                ['role' => UserRole::EMPLOYEE->name]
+                ['role' => UserRole::EMPLOYEE->name],
             )
         );
+
         $address = Address::create($this->validateAddress($request));
 
         $fields = array_merge(
