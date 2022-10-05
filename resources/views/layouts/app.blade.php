@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cb98da7190.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
@@ -25,33 +26,40 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white">
             <div class="container">
                 @auth
+                @php
+                    $isEmployee = Auth::user()->role == App\Enums\UserRole::EMPLOYEE->name;
+                    $isAdmin = $isEmployee && Auth::user()->employee->role == App\Enums\EmployeeRole::ADMIN->name;
+                    $isAreaBoss = $isEmployee && Auth::user()->employee->role == App\Enums\EmployeeRole::AREA_BOSS->name;
+                    $isAdministrative = $isEmployee && Auth::user()->employee->role == App\Enums\EmployeeRole::ADMINISTRATIVE->name;
+                    $isAffiliate = Auth::user()->role == App\Enums\UserRole::AFFILIATE->name;
+                @endphp
                      <ul class="navbar-nav mr-auto">
-                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE" || Auth::user()->role=="EMPLOYEE")
+                        @if($isEmployee || $isAffiliate)
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
                             </li>
                         @endif
-                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE")
+                        @if($isAdmin || $isAffiliate)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
                             </li>
                         @endif
-                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="EMPLOYEE")
+                        @if($isEmployee)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
                             </li>
                         @endif
-                        @if(Auth::user()->role=="ADMIN")
+                        @if($isAdmin)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
                             </li>
                         @endif
-                        @if(Auth::user()->role=="ADMIN")
+                        @if($isAdmin)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
                             </li>
                         @endif
-                        @if(Auth::user()->role=="ADMIN" || Auth::user()->role=="AFFILIATE" || Auth::user()->role=="EMPLOYEE")
+                        @if($isAdmin || $isAffiliate)
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Mi usuario</a>
                             </li>
