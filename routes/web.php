@@ -33,8 +33,11 @@ Route::resource('minor_affiliates', MinorAffiliateController::class);
 Route::resource('plans', PlanController::class);
 
 Route::post('/plans/edit/{plan}',[App\Http\Controllers\PlanController::class,'updatePlan'])->name('updatePlan');                                      // No borrar, tuve problemas con los update predefinidos
-Route::post('/adult_affiliates/edit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliate'])->name('updateAffiliate'); //  por lo que los cree de cero y no me permite usar el resource.
+Route::post('/adult_affiliates/edit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliate'])->name('updateAffiliate');//  por lo que los cree de cero y no me permite usar el resource
+Route::post('/adult_affiliates/updateSelf/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliateSelf'])->name('updateAffiliateSelf'); 
 Route::post('/adult_affiliates/register',[App\Http\Controllers\AdultAffiliateController::class,'storeRegistro'])->name('storeRegistro'); //No borrar
+Route::get('/adult_affiliates/myUserAffiliate/{id}',[App\Http\Controllers\AdultAffiliateController::class,'myUserAffiliate'])->name('myUserAffiliate'); //No borrar
+Route::get('/adult_affiliates/myUserAffiliateEdit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'myUserAffiliateEdit'])->name('myUserAffiliateEdit'); //No borrar
 
 //Esto de aca abajo eventualmente tiene que ser borrado, se hace automatico con las lineas de arriba.
 Route::get('/adult_affiliate/create',[App\Http\Controllers\AdultAffiliateController::class,'create'])->name('createAdultAffiliate');//Redirecciona a la pantalla para cargarlo
