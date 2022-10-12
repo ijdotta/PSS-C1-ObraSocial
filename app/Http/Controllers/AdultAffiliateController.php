@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Enums\UserRole;
 use Illuminate\Http\Request;
 use DateTime;
+use Illuminate\Validation\Rule;
 
 class AdultAffiliateController extends Controller
 {
@@ -71,9 +72,24 @@ class AdultAffiliateController extends Controller
         if (!AdultAffiliateController::is_18($birthdate))
             return response()->json(['message' => 'El afiliado ingresado es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
 
-        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
-
+            $user = User::create(
+                array_merge(
+                    $this->validateUser($request),
+                    ['role' => UserRole::AFFILIATE->name],
+                )
+            );
+            AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province, $user);
+    
         return redirect()->route('adult_affiliates.index');
+    }
+
+    private function validateUser(Request $request)
+    {
+        return $request->validate([
+            'name' => 'required|string',
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => 'required|min:6|same:passwordConfirmation|regex:/[a-z]/|regex:/[A-Z]/'
+        ]);
     }
 
     public function storeRegistro(Request $request)
@@ -106,7 +122,14 @@ class AdultAffiliateController extends Controller
         if (!AdultAffiliateController::is_18($birthdate))
             return response()->json(['message' => 'El afiliado ingresado es menor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un menor de edad
 
-        AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province);
+            $user = User::create(
+                array_merge(
+                    $this->validateUser($request),
+                    ['role' => UserRole::AFFILIATE->name],
+                )
+            );
+            AdultAffiliate::storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province, $user);
+    
 
         return view('dashboard');
     }
