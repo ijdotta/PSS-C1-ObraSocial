@@ -11,8 +11,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Image id</th>
-          <th scope="col">Image</th>
+          <th scope="col">Cuit/Cuil</th>
+          <th scope="col">solicitud medica</th>
+          <th scope="col">factura</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,9 @@
             <td>{{$reimbursement->cuit_cuil}}</td>
             <td>
                 <img src="{{ url('public/Image/'.$reimbursement->medical_request->image) }}" style="height: 100px; width: 150px;">
+            </td>
+            <td>
+                <img src="{{ url('public/File/'.$reimbursement->invoice->image) }}" style="height: 100px; width: 150px;">
             </td>
         </tr>
         @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reimbursement;
 use Illuminate\Http\Request;
 use App\Models\MedicalRequest;
+use App\Models\Invoice;
 
 class ReimbursementController extends Controller
 {
@@ -41,8 +42,8 @@ class ReimbursementController extends Controller
         $reimbursement->cuit_cuil=$request->cuit_cuil;
         $reimbursement->save();
 
+        /**Imagen de solicitud medica **/
         $data= new MedicalRequest();
-
         if($request->file('image_medical_request')){
             $file= $request->file('image_medical_request');
             $filename= date('YmdHi').$file->getClientOriginalName();
@@ -51,6 +52,17 @@ class ReimbursementController extends Controller
         }
         $data->reimbursement_id=$reimbursement->id;
         $data->save();
+
+        /**Imagen/archivo  de factura **/
+        $invoice= new Invoice();
+        if($request->file('invoice')){
+            $file= $request->file('invoice');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/File'), $filename);
+            $invoice['image']= $filename;
+        }
+        $invoice->reimbursement_id=$reimbursement->id;
+        $invoice->save();
 
         return redirect()->route('reimbursements.index');
        
