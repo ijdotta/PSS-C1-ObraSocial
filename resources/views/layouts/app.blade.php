@@ -59,6 +59,11 @@
                                 <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
                             </li>
                         @endif
+                        @if($isAffiliate)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('reimbursements.create')}}">Solicitudes</a>
+                            </li>
+                        @endif
                         @if($isAdmin || $isAffiliate)
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Mi usuario</a>
