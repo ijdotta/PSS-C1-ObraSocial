@@ -27,7 +27,7 @@
 
                         <div class="row align-items-start">
                             <p class="col">Factura *</p>
-                            <input type="file" class="col form-control" required name="invoice">
+                            <input type="file" class="col form-control" accept="image/*,application/pdf" required name="invoice">
                         </div>
 
                         <div class="post_button">

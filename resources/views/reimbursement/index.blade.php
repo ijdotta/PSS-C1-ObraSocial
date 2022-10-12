@@ -24,7 +24,7 @@
                 <img src="{{ url('public/Image/'.$reimbursement->medical_request->image) }}" style="height: 100px; width: 150px;">
             </td>
             <td>
-                <img src="{{ url('public/File/'.$reimbursement->invoice->image) }}" style="height: 100px; width: 150px;">
+                <embed src="{{ url('public/File/'.$reimbursement->invoice->image) }}" style="height: 100px; width: 150px;">
             </td>
         </tr>
         @endforeach
