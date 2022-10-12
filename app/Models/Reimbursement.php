@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Postimage;
+use App\Models\MedicalRequest;
 
 class reimbursement extends Model
 {
@@ -12,7 +12,7 @@ class reimbursement extends Model
 
     public function medical_request()
     {
-        return $this->hasOne(Postimage::class);
+        return $this->hasOne(MedicalRequest::class);
     }
 
 }

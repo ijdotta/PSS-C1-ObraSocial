@@ -22,7 +22,7 @@
 
                         <div class="row align-items-start">
                             <p class="col">Solicitud medica *</p>
-                            <input type="file" class="col form-control" required name="image_medical_request">
+                            <input type="file" class="col form-control" accept="image/*" required name="image_medical_request">
                         </div>
 
                         <div class="post_button">

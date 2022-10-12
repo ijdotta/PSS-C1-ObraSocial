@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reimbursement;
 use Illuminate\Http\Request;
-use App\Models\Postimage;
+use App\Models\MedicalRequest;
 
 class ReimbursementController extends Controller
 {
@@ -41,7 +41,7 @@ class ReimbursementController extends Controller
         $reimbursement->cuit_cuil=$request->cuit_cuil;
         $reimbursement->save();
 
-        $data= new Postimage();
+        $data= new MedicalRequest();
 
         if($request->file('image_medical_request')){
             $file= $request->file('image_medical_request');

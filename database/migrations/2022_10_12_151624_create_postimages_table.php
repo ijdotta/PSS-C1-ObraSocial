@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('postimages', function (Blueprint $table) {
+        Schema::create('medical_requests', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('image')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('postimages');
+        Schema::dropIfExists('medicalRequests');
     }
 };

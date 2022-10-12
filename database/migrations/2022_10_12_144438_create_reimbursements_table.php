@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('cuit_cuil');
-            //$table->unsignedBigInteger('medical_request_id'); //Id de la imagen
-            //$table->foreign('medical_request_id')->references('id')->on('postimages')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
