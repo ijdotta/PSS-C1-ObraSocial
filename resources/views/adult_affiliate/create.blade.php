@@ -1,116 +1,97 @@
 @extends('layouts.app')
 
-@section('content_header')
-    <h1>Agregar nuevo afiliado</h1>
-@stop
-
 @section('content')
-    <div class="pt-5 container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card"> 
-                            <div class="card-body">
-                               <form class="form-floating mb-3" action="{{route('adult_affiliates.store')}}" method="POST">
+<div class="pt-5 container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header font-semibold"><strong>Agregar nuevo afiliado</strong></div>
+                <div class="card-body">
 
-                               <x-errors-alerts />
-                                    @csrf
+                    <x-errors-alerts />
 
-                                   <p for="floatingInput">Los campos con * son obligatorios</p>
+                    {{ Form::open(['route' => ['adult_affiliates.store']]) }}
 
-                                   <div class="row align-items-start">
-                                        <label class="col">Nombre *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="name" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Apellido *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="surname" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Fecha de nacimiento *</label>
-                                        <input type="date" class="form-control col" id="floatingInput" name="birthdate" required>
-                                    </div>
-
-                                    <div div class="row align-items-start">
-                                        <p class="col">DNI *</p>
-                                        <input type="number" class="form-control col" id="floatingInput" name="DNI" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <p class="col">email *</p>
-                                        <input type="email" class="form-control col" id="floatingInput" name="email" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <p class="col">Direccíon</p>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Calle</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="street">
-                                        <label class="col">Número</label>
-                                        <input type="number" class="form-control col" id="floatingInput" name="streetNumber">
-
-                                    </div>
-                                   
-                                    <div class="row align-items-start">
-                                        <label class="col">Localidad *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="location" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Provincia *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="province" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Telefono *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="phoneNumber" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Plan seleccionado *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="plan" required>
-                                            @foreach ($planesEnUso as $plan)
-                                                <option selected value={{$plan->id}}>{{$plan->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Forma de pago *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
-                                            <option selected value="Mensual">Mensual</option>
-                                            <option value="Semestral">Semestral</option>
-                                            <option value="Anual">Anual</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Contraseña *</label>
-                                        <input type="password" class="form-control col" id="floatingInput" name="password" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Repetir contraseña *</label>
-                                        <input type="password" class="form-control col" id="floatingInput" name="passwordConfirmation" required>
-                                    </div>
-
-                                    <div class="d-flex justify-content-end">
-                                    <div class="pt-2">
-                                        @include('components.buttons.confirm')
-                                        @include('components.buttons.cancel', ['route' => 'adult_affiliates.index'])
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>    
+                    <div class="form-group">
+                        {{ Form::label('Nombre *') }}
+                        {{ Form::text('name', null, ['class' => 'form-control']) }}
                     </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Apellido *') }}
+                        {{ Form::text('surname', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Fecha de nacimiento *') }}
+                        {{ Form::date('birthdate', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('DNI *') }}
+                        {{ Form::number('DNI', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Email *') }}
+                        {{ Form::email('email', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="card-body">
+
+                        <p><strong>Dirección</strong></p>
+
+                        <div class="form-group">
+                            {{ Form::label('Calle') }}
+                            {{ Form::text('street', null, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('Número') }}
+                            {{ Form::number('street_number', null, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('Localidad *') }}
+                            {{ Form::text('location', null, ['class' => 'form-control']) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ Form::label('Provincia *') }}
+                            {{ Form::text('province', null, ['class' => 'form-control']) }}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Teléfono *') }}
+                        {{ Form::number('phone_number', null, ['class' => 'form-control']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Plan seleccionado *') }}
+                        {{ Form::select('plan_id', $planesEnUso, null, ['class' => 'form-select']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Forma de pago *') }}
+                        {{ Form::select('way_to_pay', ['Mensual' => 'Mensual', 'Semestral' => 'Semestral', 'Anual' => 'Anual'], 'Mensual', ['class' => 'form-select']) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('Contraseña *') }}
+                        {{ Form::password('password', ['class' => 'form-control']) }}
+
+                        {{ Form::label('Repita la contraseña *') }}
+                        {{ Form::password('password_repeat', ['class' => 'form-control']) }}
+                    </div>
+
+                    <x-buttons.submit-cancel-btns />
+
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
     </div>
-
-
+</div>
 @endsection

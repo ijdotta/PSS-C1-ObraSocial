@@ -31,7 +31,7 @@ class AdultAffiliateController extends Controller
      */
     public function create()
     {
-        $planesEnUso=Plan::where('state', '=', 'En_uso')->get();
+        $planesEnUso=Plan::where('state', '=', 'En_uso')->get()->pluck('name', 'id');
 
         return view('adult_affiliate.create',compact('planesEnUso'));
     }
@@ -50,11 +50,11 @@ class AdultAffiliateController extends Controller
         $DNI = $request->get('DNI');
         $street = $request->get('street');
         $streetNumber = $request->get('streetNumber');
-        $phoneNumber = $request->get('phoneNumber');
-        $plan = $request->get('plan');
-        $wayToPay = $request->get('wayToPay');
+        $phoneNumber = $request->get('phone_number');
+        $plan = $request->get('plan_id');
+        $wayToPay = $request->get('way_to_pay');
         $password = $request->get('password');
-        $passwordAux = $request->get('passwordConfirmation');
+        $passwordAux = $request->get('password_repeat');
         $email = $request->get('email');
         $location = $request->get('location');
         $province = $request->get('province');
@@ -88,7 +88,7 @@ class AdultAffiliateController extends Controller
         return $request->validate([
             'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required|min:6|same:passwordConfirmation|regex:/[a-z]/|regex:/[A-Z]/'
+            'password' => 'required|min:6|same:password_repeat|regex:/[a-z]/|regex:/[A-Z]/'
         ]);
     }
 
@@ -99,12 +99,12 @@ class AdultAffiliateController extends Controller
         $birthdate = $request->get('birthdate');
         $DNI = $request->get('DNI');
         $street = $request->get('street');
-        $streetNumber = $request->get('streetNumber');
-        $phoneNumber = $request->get('phoneNumber');
-        $plan = $request->get('plan');
-        $wayToPay = $request->get('wayToPay');
+        $streetNumber = $request->get('street_number');
+        $phoneNumber = $request->get('phone_number');
+        $plan = $request->get('plan_id');
+        $wayToPay = $request->get('way_to_pay');
         $password = $request->get('password');
-        $passwordAux = $request->get('passwordConfirmation');
+        $passwordAux = $request->get('password_repeat');
         $email = $request->get('email');
         $location = $request->get('location');
         $province = $request->get('province');

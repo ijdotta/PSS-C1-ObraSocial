@@ -65,7 +65,7 @@
                                         <label class="col">Calle</label>
                                         <input type="text" class="form-control col" id="floatingInput" name="street">
                                         <label class="col">Número</label>
-                                        <input type="number" class="form-control col" id="floatingInput" name="streetNumber">
+                                        <input type="number" class="form-control col" id="floatingInput" name="street_number">
 
                                     </div>
                                    
@@ -81,12 +81,12 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Telefono *</label>
-                                        <input type="text" class="form-control col" id="floatingInput" name="phoneNumber" required>
+                                        <input type="text" class="form-control col" id="floatingInput" name="phone_number" required>
                                     </div>
 
                                     <div class="row align-items-start">
                                         <label class="col">Plan seleccionado *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="plan" required>
+                                        <select class="form-select col" aria-label="Default select example" name="plan_id" required>
                                             @foreach ($planesEnUso as $plan)
                                                 <option selected value={{$plan->id}}>{{$plan->name}}</option>
                                             @endforeach
@@ -95,7 +95,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Forma de pago *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="wayToPay" required>
+                                        <select class="form-select col" aria-label="Default select example" name="way_to_pay" required>
                                             <option selected value="Mensual">Mensual</option>
                                             <option value="Semestral">Semestral</option>
                                             <option value="Anual">Anual</option>
@@ -109,7 +109,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Repetir contraseña *</label>
-                                        <input type="password" class="form-control col" id="floatingInput" name="passwordConfirmation" required>
+                                        <input type="password" class="form-control col" id="floatingInput" name="password_repeat" required>
                                     </div>
 
                                     <div class="d-flex justify-content-end">
