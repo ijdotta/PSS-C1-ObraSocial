@@ -37,11 +37,12 @@
                                         </button>
                                     </div>
 
-                                    <div class="row align-items-start">
-                                        <form class="pe-1" action="{{route('plans.edit',$plan)}}" method="GET">
-                                            <button type="submit" class="btn btn-outline-danger col">Modificar</button>
-                                        </form>
-                                        @include('components.buttons.delete', ['element' => $plan, 'route' => 'plans.destroy', 'buttonText' => 'Eliminar'])
+                                    <div class="align-items-start">
+                                        <!-- <form class="pe-1" action="{{route('plans.edit',$plan)}}" method="GET">
+                                            <button type="submit" class="btn btn-outline-primary col">Modificar</button>
+                                        </form> -->
+                                        @include('components.buttons.edit', ['element' => $plan, 'route' => 'plans.edit'])
+                                        @include('components.buttons.delete', ['element' => $plan, 'route' => 'plans.destroy'])
                                     </div>
 
                                     <!-- Modal Prestaciones-->

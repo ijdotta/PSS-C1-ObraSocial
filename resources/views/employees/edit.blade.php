@@ -14,32 +14,32 @@
                         {{ Form::model($employee, ['method' => 'PUT', 'route' => ['employees.update', $employee->id]]) }}
 
                         <div class="form-group">
-                            {{ Form::label('Nombre') }}
+                            {{ Form::label('Nombre *') }}
                             {{ Form::text('name', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Apellido') }}
+                            {{ Form::label('Apellido *') }}
                             {{ Form::text('lastname', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Fecha de nacimiento') }}
+                            {{ Form::label('Fecha de nacimiento *') }}
                             {{ Form::date('date_of_birth', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('DNI') }}
+                            {{ Form::label('DNI *') }}
                             {{ Form::number('DNI', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Email') }}
+                            {{ Form::label('Email *') }}
                             {{ Form::email('email', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Número de teléfono') }}
+                            {{ Form::label('Teléfono *') }}
                             {{ Form::number('phone_number', null, ['class' => 'form-control']) }}
                         </div>
 
@@ -58,26 +58,26 @@
                             </div>
 
                             <div class="form-group">
-                                {{ Form::label('Ciudad') }}
+                                {{ Form::label('Localidad *') }}
                                 {{ Form::text('city', $employee->address->city, ['class' => 'form-control']) }}
                             </div>
 
                             <div class="form-group">
-                                {{ Form::label('Provincia') }}
+                                {{ Form::label('Provincia *') }}
                                 {{ Form::text('province', $employee->address->province, ['class' => 'form-control']) }}
                             </div>
 
                         </div>
                         <div class="form-group">
-                            {{ Form::label('Rol') }}
+                            {{ Form::label('Rol *') }}
                             {{ Form::select('role', $roles, null, ['class' => 'form-select']) }}
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Contraseña') }}
+                            {{ Form::label('Contraseña *') }}
                             {{ Form::password('password', ['class' => 'form-control']) }}
 
-                            {{ Form::label('Repita la contraseña') }}
+                            {{ Form::label('Repita la contraseña *') }}
                             {{ Form::password('password_repeat', ['class' => 'form-control']) }}
                         </div>
 
