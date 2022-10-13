@@ -45,7 +45,7 @@
                                 <td>{{ $benefit->provider }}</td>
                                 <td>{{ $benefit->created_at }}</td>
                                 <td>{{ $benefit->service_date }}</td>
-                                <td>{{ 'state' }}</td>
+                                <td>{{ $benefitStates[$benefit->state] }}</td>
                             </tr>
                         @endforeach
                     </tbody>

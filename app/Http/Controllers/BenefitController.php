@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BenefitStates;
 use App\Enums\UserRole;
 use App\Models\AdultAffiliate;
 use App\Models\Benefit;
@@ -23,10 +24,12 @@ class BenefitController extends Controller
     {
         $adultAffiliate = $this->adultAffiliate();
         $benefits = $adultAffiliate == null? Benefit::paginate(Controller::$RESULT_PAGINATION) : $adultAffiliate->benefits->all();
+        $benefitStates = BenefitStates::array();
 
         return view($this->VIEWS_ROOT_PATH.'.index')
                 ->with('adultAffiliate', $adultAffiliate)
-                ->with('benefits', $benefits);
+                ->with('benefits', $benefits)
+                ->with('benefitStates', $benefitStates);
     }
 
     public function filteredIndex(Request $request)
@@ -44,10 +47,12 @@ class BenefitController extends Controller
 
         $adultAffiliate = $this->adultAffiliate();
         $benefits = Benefit::whereBetween('created_at', [$from, $to])->get();
+        $benefitStates = BenefitStates::array();
         clock('benefits: '.$benefits);
         return view($this->VIEWS_ROOT_PATH.'.index')
                 ->with('adultAffiliate', $adultAffiliate)
-                ->with('benefits', $benefits);
+                ->with('benefits', $benefits)
+                ->with('benefitStates', $benefitStates);
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\BenefitStates;
 
 return new class extends Migration
 {
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('path_to_medical_order');
             $table->string('path_to_medical_history')->nullable();
             $table->text('comment')->nullable();
+            $table->string('state')->default(BenefitStates::REQUESTED->name);
             $table->timestamps();
         });
     }
