@@ -32,7 +32,8 @@ class BenefitFactory extends Factory
             'service_date' => fake()->date(),
             'path_to_medical_order' => $jpg_path,
             'path_to_medical_history' => $pdf_path,
-            'comment' => fake()->text()
+            'comment' => fake()->text(),
+            'created_at' => fake()->dateTime(),
         ];
     }
 }
