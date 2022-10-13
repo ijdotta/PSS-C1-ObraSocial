@@ -32,6 +32,7 @@
                     $isAreaBoss = $isEmployee && Auth::user()->employee->role == App\Enums\EmployeeRole::AREA_BOSS->name;
                     $isAdministrative = $isEmployee && Auth::user()->employee->role == App\Enums\EmployeeRole::ADMINISTRATIVE->name;
                     $isAffiliate = Auth::user()->role == App\Enums\UserRole::AFFILIATE->name;
+                    $userId=Auth::user()->id;
                 @endphp
                      <ul class="navbar-nav mr-auto">
                         @if($isEmployee || $isAffiliate)
@@ -72,7 +73,15 @@
                         @endif
                         @if($isAdmin || $isAffiliate)
                             <li class="nav-item">
-                                <a class="nav-link"  @if(Auth::user()->role=="AFFILIATE") href="{{route('myUserAffiliate',Auth::user()->id)}}" @endif>Mi usuario</a>
+                                <a class="nav-link" 
+                                
+                                     @if($isAffiliate)
+                                       href="{{route('myUserAffiliate',$userId)}}" 
+                                    @else
+                                         href="#"
+                                    @endif
+                                    
+                                >Mi usuario</a>
                             </li>
                         @endif
                     </ul>
