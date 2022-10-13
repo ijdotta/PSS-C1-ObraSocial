@@ -19,7 +19,7 @@ class AdultAffiliateController extends Controller
      */
     public function index()
     {
-        $adultAffiliates = AdultAffiliate::all();
+        $adultAffiliates = AdultAffiliate::paginate(Controller::$RESULT_PAGINATION);
 
         return view('adult_affiliate.index')->with('adultAffiliates', $adultAffiliates);
     }
