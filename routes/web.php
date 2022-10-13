@@ -7,6 +7,7 @@ use App\Http\Controllers\AdultAffiliateController;
 use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\MinorAffiliateController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ReimbursementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::resource('employees', EmployeeController::class);
 Route::resource('adult_affiliates', AdultAffiliateController::class);
 Route::resource('minor_affiliates', MinorAffiliateController::class);
 Route::resource('plans', PlanController::class);
+Route::resource('reimbursements', ReimbursementController::class);
 
 Route::resource('benefits', BenefitController::class);
 Route::post('/benefits/filtered', [BenefitController::class, 'filteredIndex'])->name('filteredBenefits');
