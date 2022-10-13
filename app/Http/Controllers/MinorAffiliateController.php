@@ -122,6 +122,16 @@ class MinorAffiliateController extends Controller
     public function update(Request $request, MinorAffiliate $minorAffiliate)
     {
         //
+
+        $minorAffiliate->name = $request->get('name');
+        $minorAffiliate->surname = $request->get('surname');
+        $minorAffiliate->birthdate = $request->get('birthdate');
+        $minorAffiliate->DNI = $request->get('DNI');
+        $minorAffiliate->phoneNumber = $request->get('phoneNumber');
+
+        $minorAffiliate->save();
+        
+        return redirect()->route('minor_affiliates.index');
     }
 
     /**
