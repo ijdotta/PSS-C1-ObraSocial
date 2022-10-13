@@ -1,1 +1,1 @@
-{{ Form::button('Confirmar', ['type' => 'submit','class' => 'btn btn-outline-primary']) }}
+{{ Form::button('Confirmar', ['type' => 'submit','class' => 'btn btn-outline-success']) }}

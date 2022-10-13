@@ -12,6 +12,7 @@
                             <div class="card-body">
                                <form class="form-floating mb-3" action="{{route('adult_affiliates.store')}}" method="POST">
 
+                               <x-errors-alerts />
                                     @csrf
 
                                    <p for="floatingInput">Los campos con * son obligatorios</p>
@@ -59,7 +60,7 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Proviencia *</label>
+                                        <label class="col">Provincia *</label>
                                         <input type="text" class="form-control col" id="floatingInput" name="province" required>
                                     </div>
 

@@ -26,6 +26,8 @@
                             <div class="card-body">
                                <form class="form-floating mb-3" action="{{route('storeRegistro')}}" method="POST">
 
+                               <x-errors-alerts />
+                               
                                     @csrf
 
                                    <p for="floatingInput">Los campos con * son obligatorios</p>

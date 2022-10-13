@@ -7,10 +7,12 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravelcollective/html": "^6.3"
+        "laravelcollective/html": "^6.3",
+        "nesbot/carbon": "^2.62"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

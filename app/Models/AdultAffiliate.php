@@ -6,6 +6,8 @@ use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdultAffiliate extends Model
 {
@@ -21,12 +23,18 @@ class AdultAffiliate extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province)
+    public function benefits()
+    {
+        return $this->hasMany(Benefit::class);
+    }
+
+    public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province, $user)
     {
         if (isset($name)) {
             $affiliate = new AdultAffiliate();
 
             $affiliate->name = $name;
+            $affiliate->user_id = $user->id;
             $affiliate->surname = $surname;
             $affiliate->birthdate = $birthdate;
             $affiliate->DNI = $DNI;
@@ -39,9 +47,13 @@ class AdultAffiliate extends Model
             $affiliate->location = $location;
             $affiliate->province = $province;
 
-            $user_id=User::create_returnId($name, UserRole::AFFILIATE->name, $email, $password);
-
-            $affiliate->user_id = $user_id;
+            /*
+            $fields = 
+                ['name' => $name, 'role' => UserRole::AFFILIATE->name, 'email' => $email, 'password' => $password]
+            ;
+            $userdab=User::create($fields);
+*/
+            //$affiliate->user_id = $userdab->id;
 
             $affiliate->save();
         }
