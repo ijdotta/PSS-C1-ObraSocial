@@ -23,6 +23,11 @@ class AdultAffiliate extends Model
         return $this->belongsTo(Plan::class);
     }
 
+    public function benefits()
+    {
+        return $this->hasMany(Benefit::class);
+    }
+
     public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province, $user)
     {
         if (isset($name)) {
