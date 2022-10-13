@@ -22,8 +22,29 @@ class BenefitController extends Controller
     public function index()
     {
         $adultAffiliate = $this->adultAffiliate();
-        $benefits = $adultAffiliate == null? Benefit::all() : $adultAffiliate->benefits->all();
+        $benefits = $adultAffiliate == null? Benefit::paginate(Controller::$RESULT_PAGINATION) : $adultAffiliate->benefits->all();
 
+        return view($this->VIEWS_ROOT_PATH.'.index')
+                ->with('adultAffiliate', $adultAffiliate)
+                ->with('benefits', $benefits);
+    }
+
+    public function filteredIndex(Request $request)
+    {
+        $from = $request->from ? Carbon::createFromFormat('Y-m-d', $request->from) : Carbon::minValue();
+        $from->setHour(0);
+        $from->setMinute(0);
+        $from->setSecond(0);
+        clock('from: '.$from);
+        $to = $request->to ? Carbon::createFromFormat('Y-m-d', $request->to) : Carbon::maxValue();
+        $to->setHour(23);
+        $to->setMinute(59);
+        $to->setSecond(59);
+        clock('to: '.$from);
+
+        $adultAffiliate = $this->adultAffiliate();
+        $benefits = Benefit::whereBetween('created_at', [$from, $to])->get();
+        clock('benefits: '.$benefits);
         return view($this->VIEWS_ROOT_PATH.'.index')
                 ->with('adultAffiliate', $adultAffiliate)
                 ->with('benefits', $benefits);
