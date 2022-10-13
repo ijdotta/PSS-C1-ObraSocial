@@ -12,25 +12,28 @@
                     <a href="{{ route('benefits.create') }}"><button class="btn btn-success">Solicitar prestación</button></a>
                 </div>
 
-                {{Form::open(['route' => ['filteredBenefits']])}}
-                <div class="row justify-content-between align-items-end border border-2 rounded rounded-5 p-2 m-3 gap-3">
+                {{ Form::open(['route' => ['filteredBenefits']]) }}
+                <div class="row justify-content-start align-items-end border border-2 rounded rounded-5 p-2 m-3 gap-3">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            {{Form::label('from')}}
-                            {{Form::date('from', null, ['class' => 'form-control'])}}
+                            {{ Form::label('from') }}
+                            {{ Form::date('from', null, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            {{Form::label('to')}}
-                            {{Form::date('to', null, ['class' => 'form-control'])}}
+                            {{ Form::label('to') }}
+                            {{ Form::date('to', null, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
-                        <x-buttons.submit-button/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-check"></i>
+                            Aplicar
+                        </button>
                     </div>
                 </div>
-                    {{Form::close()}}
+                {{ Form::close() }}
 
                 <table class="table table-hover">
                     <thead>
