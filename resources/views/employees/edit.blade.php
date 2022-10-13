@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Teléfono *') }}
+                            {{ Form::label('Teléfono') }}
                             {{ Form::number('phone_number', null, ['class' => 'form-control']) }}
                         </div>
 
