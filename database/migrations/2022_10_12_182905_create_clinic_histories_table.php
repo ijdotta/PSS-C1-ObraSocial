@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reimbursements', function (Blueprint $table) {
+        Schema::create('clinic_histories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('cuit_cuil');
-            $table->string('comment')->nullable();
-            
+            $table->string('file')->nullable();
+            $table->unsignedBigInteger('reimbursement_id'); 
+            $table->foreign('reimbursement_id')->references('id')->on('reimbursements')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reimbursements');
+        Schema::dropIfExists('clinic_histories');
     }
 };

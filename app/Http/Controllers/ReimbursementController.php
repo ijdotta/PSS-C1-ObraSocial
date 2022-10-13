@@ -6,6 +6,9 @@ use App\Models\Reimbursement;
 use Illuminate\Http\Request;
 use App\Models\MedicalRequest;
 use App\Models\Invoice;
+use App\Models\ClinicHistory;
+use DateTime;
+
 
 class ReimbursementController extends Controller
 {
@@ -38,8 +41,18 @@ class ReimbursementController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(   
+            ['date' => 'before:yesterday'] 
+        );   
+
         $reimbursement= new Reimbursement();
         $reimbursement->cuit_cuil=$request->cuit_cuil;
+
+        if($request->comment){
+            $reimbursement->comment=$request->comment;
+        }
+
         $reimbursement->save();
 
         /**Imagen de solicitud medica **/
@@ -63,6 +76,17 @@ class ReimbursementController extends Controller
         }
         $invoice->reimbursement_id=$reimbursement->id;
         $invoice->save();
+
+        /**archivo de historia clinica**/
+        $clinic_history= new ClinicHistory();
+        if($request->file('clinic_history')){
+            $file= $request->file('clinic_history');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/File'), $filename);
+            $clinic_history['file']= $filename;
+        }
+        $clinic_history->reimbursement_id=$reimbursement->id;
+        $clinic_history->save();
 
         return redirect()->route('reimbursements.index');
        
