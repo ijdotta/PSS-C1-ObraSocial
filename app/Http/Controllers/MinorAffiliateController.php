@@ -18,7 +18,7 @@ class MinorAffiliateController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+        $user = auth()->user(); //OJO podria ser asi Auth::user();
         
         if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
             $minorAffiliates = $user->profile->minorAffiliates;
@@ -109,7 +109,8 @@ class MinorAffiliateController extends Controller
      */
     public function edit(MinorAffiliate $minorAffiliate)
     {
-        //
+        return view('minor_affiliate.edit')
+                -> with('minor_affiliates',$minorAffiliate);
     }
 
     /**
@@ -127,7 +128,7 @@ class MinorAffiliateController extends Controller
         $minorAffiliate->surname = $request->get('surname');
         $minorAffiliate->birthdate = $request->get('birthdate');
         $minorAffiliate->DNI = $request->get('DNI');
-        $minorAffiliate->phoneNumber = $request->get('phoneNumber');
+        $minorAffiliate->phone_number = $request->get('phone_number');
 
         $minorAffiliate->save();
         

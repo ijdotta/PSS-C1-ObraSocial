@@ -11,7 +11,7 @@
                         <x-errors-alerts />
 
                         {{-- {{ Form::open(['route' => ['minor_affiliates.store']]) }} --}}
-                        {{ Form::model($minor_affiliates, ['method' => 'PUT', 'route' => ['minor_affiliates.update', $minor_affiliates]]) }}
+                        {{ Form::model($minor_affiliates, ['method' => 'PUT', 'route' => ['minor_affiliates.update', $minor_affiliates->id]]) }}
 
                         <div class="form-group">
                             {{ Form::label('Nombre *') }}
@@ -20,12 +20,12 @@
 
                         <div class="form-group">
                             {{ Form::label('Apellido *') }}
-                            {{ Form::text('lastname', null, ['class' => 'form-control']) }}
+                            {{ Form::text('surname', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('Fecha de nacimiento *') }}
-                            {{ Form::date('date_of_birth', null, ['class' => 'form-control']) }}
+                            {{ Form::date('birthdate', null, ['class' => 'form-control']) }}
                         </div>
 
                         <div class="form-group">
