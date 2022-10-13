@@ -131,8 +131,8 @@ class BenefitController extends Controller
         return $request->validate([
             'provider' => 'required',
             'service_date' => 'required|date|after_or_equal:tomorrow',
-            'medical_order' => 'required|file',
-            'medical_history' => 'file',
+            'medical_order' => 'required|image',
+            'medical_history' => 'mimes:pdf',
         ]);
     }
 
