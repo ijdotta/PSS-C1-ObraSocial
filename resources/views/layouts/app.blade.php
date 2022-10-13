@@ -66,10 +66,9 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                     <li><a class="dropdown-item" href="{{route('reimbursements.index')}}">Reintegros</a></li>
-                                    <li><a class="dropdown-item" href="#">Prestaciones</a></li>
+                                    <li><a class="dropdown-item" href="{{route('benefits.index')}}">Prestaciones</a></li>
                                 </ul>
                             </li>
-                           
                         @endif
                         @if($isAdmin || $isAffiliate)
                             <li class="nav-item">

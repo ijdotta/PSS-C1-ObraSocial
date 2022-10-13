@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdultAffiliateController;
+use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\MinorAffiliateController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReimbursementController;
@@ -33,6 +34,9 @@ Route::resource('adult_affiliates', AdultAffiliateController::class);
 Route::resource('minor_affiliates', MinorAffiliateController::class);
 Route::resource('plans', PlanController::class);
 Route::resource('reimbursements', ReimbursementController::class);
+
+Route::resource('benefits', BenefitController::class);
+Route::post('/benefits/filtered', [BenefitController::class, 'filteredIndex'])->name('filteredBenefits');
 
 Route::post('/plans/edit/{plan}',[App\Http\Controllers\PlanController::class,'updatePlan'])->name('updatePlan');                                      // No borrar, tuve problemas con los update predefinidos
 Route::post('/adult_affiliates/edit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliate'])->name('updateAffiliate'); //  por lo que los cree de cero y no me permite usar el resource.
