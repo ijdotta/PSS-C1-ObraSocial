@@ -153,6 +153,22 @@ class AdultAffiliateController extends Controller
         //
     }
 
+    public function myUserAffiliate($id)
+    {
+        $self=AdultAffiliate::where('user_id','=',$id)->get()->first();
+        $planesEnUso=Plan::where('state', '=', 'En_uso')->get();
+        return view('components.myUser',compact('self','planesEnUso'));
+    }
+
+
+    public function myUserAffiliateEdit(AdultAffiliate $adultAffiliate)
+    {
+        $self=$adultAffiliate;
+        $planesEnUso=Plan::where('state', '=', 'En_uso')->get();
+        return view('components.myUserEdit',compact('self','planesEnUso'));
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -163,6 +179,12 @@ class AdultAffiliateController extends Controller
     {
         $planesEnUso=Plan::where('state', '=', 'En_uso')->get();
         return view('adult_affiliate.edit',compact('adultAffiliate','planesEnUso'));
+    }
+
+    public function editSelf($id)
+    {
+        $self=AdultAffiliate::where('user_id','=',$id);
+        AdultAffiliateController::edit($self);
     }
 
     /**
@@ -222,6 +244,39 @@ class AdultAffiliateController extends Controller
         $adultAffiliate->save();
         
         return redirect()->route('adult_affiliates.index');
+    }
+
+    public function updateAffiliateSelf(Request $request, AdultAffiliate $adultAffiliate){
+        AdultAffiliateController::updateModel($request,$adultAffiliate);
+        return view('dashboard');
+    }
+    
+    function updateModel(Request $request, AdultAffiliate $adultAffiliate){
+        $adultAffiliate->name = $request->get('name');
+        $adultAffiliate->birthdate = $request->get('birthdate');
+        $adultAffiliate->DNI = $request->get('DNI');
+        $adultAffiliate->surname = $request->get('surname');
+        $adultAffiliate->street = $request->get('street');
+        $adultAffiliate->street_number = $request->get('street_number');
+        $adultAffiliate->phone_number = $request->get('phone_number');
+        $adultAffiliate->plan_id = $request->get('plan');
+        $adultAffiliate->way_to_pay = $request->get('way_to_pay');
+        $adultAffiliate->email = $request->get('email');
+        $adultAffiliate->location = $request->get('location');
+        $adultAffiliate->province = $request->get('province');
+
+        $user=User::where('id','=', $adultAffiliate->user_id)->get()->first();
+
+        $user->name = $request->get('name');
+
+        $user->role = UserRole::AFFILIATE->name;
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+
+        $user->save();
+        
+        $adultAffiliate->user_id=$user->id;
+        $adultAffiliate->save();
     }
 
     /**

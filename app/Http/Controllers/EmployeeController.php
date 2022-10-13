@@ -108,8 +108,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        $employee->user()->update($this->validateUserUpdate($request));
-        $employee->address()->update($this->validateAddress($request));
+        $employee->user->update($this->validateUserUpdate($request));
+        $employee->address->update($this->validateAddress($request));
         $employee->update($this->validateEmployeeUpdate($request));
 
         return redirect(route('employees.index'));
