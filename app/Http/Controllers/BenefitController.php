@@ -22,38 +22,61 @@ class BenefitController extends Controller
      */
     public function index()
     {
-        $adultAffiliate = $this->adultAffiliate();
-        $benefits = $adultAffiliate == null? Benefit::paginate(Controller::$RESULT_PAGINATION) : $adultAffiliate->benefits->all();
-        $benefitStates = BenefitStates::array();
-
-        return view($this->VIEWS_ROOT_PATH.'.index')
-                ->with('adultAffiliate', $adultAffiliate)
-                ->with('benefits', $benefits)
-                ->with('benefitStates', $benefitStates);
+        return $this->getBenefitsIndexView(null);
     }
 
     public function filteredIndex(Request $request)
     {
-        $from = $request->from ? Carbon::createFromFormat('Y-m-d', $request->from) : Carbon::minValue();
+        return $this->getBenefitsIndexView($request);
+    }
+
+    private function getBenefitsIndexView(?Request $request)
+    {
+        $benefits = $this->getBenefits($request);
+        $benefitStates = BenefitStates::array();
+
+        return view($this->VIEWS_ROOT_PATH.'.index')
+                ->with('benefits', $benefits)
+                ->with('benefitStates', $benefitStates);
+    }
+
+    private function getBenefits(?Request $request)
+    {
+        if (Auth::user()->role == UserRole::EMPLOYEE)
+        {
+            return Benefit::all(); // Benefit::paginate(Controller::$RESULT_PAGINATION);
+        }
+        else 
+        {
+            $adultAffiliate = $this->adultAffiliate();
+            if ($request == null)
+            {
+                return $adultAffiliate->benefits->all();
+            }
+            else
+            {
+                return $this->getFilteredBenefits($request);
+            }
+        }
+    }
+
+    private function getFilteredBenefits(Request $request)
+    {
+        $from = $request->from != null ? Carbon::createFromFormat('Y-m-d', $request->from) : Carbon::minValue();
         $from->setHour(0);
         $from->setMinute(0);
         $from->setSecond(0);
         clock('from: '.$from);
-        $to = $request->to ? Carbon::createFromFormat('Y-m-d', $request->to) : Carbon::maxValue();
+        
+        $to = $request->to != null ? Carbon::createFromFormat('Y-m-d', $request->to) : Carbon::maxValue();
         $to->setHour(23);
         $to->setMinute(59);
         $to->setSecond(59);
         clock('to: '.$from);
 
-        $adultAffiliate = $this->adultAffiliate();
-        $benefits = Benefit::whereBetween('created_at', [$from, $to])->get();
-        $benefitStates = BenefitStates::array();
-        clock('benefits: '.$benefits);
-        return view($this->VIEWS_ROOT_PATH.'.index')
-                ->with('adultAffiliate', $adultAffiliate)
-                ->with('benefits', $benefits)
-                ->with('benefitStates', $benefitStates);
+        return Benefit::whereBetween('created_at', [$from, $to])->get();
     }
+
 
     /**
      * Show the form for creating a new resource.
