@@ -59,6 +59,18 @@
                                 <a class="nav-link" href="{{route('plans.index')}}">Planes</a>
                             </li>
                         @endif
+                        @if($isAffiliate)
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Solicitudes
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{{route('reimbursements.index')}}">Reintegros</a></li>
+                                    <li><a class="dropdown-item" href="#">Prestaciones</a></li>
+                                </ul>
+                            </li>
+                           
+                        @endif
                         @if($isAdmin || $isAffiliate)
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Mi usuario</a>
