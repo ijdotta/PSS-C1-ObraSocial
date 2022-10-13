@@ -47,10 +47,10 @@
                             <input type="text" class="col form-control" accept="application/pdf" name="comment">
                         </div>
 
-
                         <div class="post_button">
                         <button type="submit" class="btn btn-success">Confirmar</button>
                         </div>
+                        @include('components.buttons.cancel-button', ['buttonText'=>'Solicitar reintegro','route' => 'reimbursements.create'])
                     </form>
         
                 </div>

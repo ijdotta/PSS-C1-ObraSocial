@@ -7,10 +7,14 @@
 @section('content')
 
     <div class="container">
-    <h3>View all image</h3><hr>
+    <h3>Reintegros</h3><hr>
+    @include('components.buttons.add', ['buttonText'=>'Solicitar reintegro','route' => 'reimbursements.create'])
+    
+    De aca para abajo lo hice solo para testear... se puede borrar.
     <table class="table">
       <thead>
         <tr>
+          
           <th scope="col">Cuit/Cuil</th>
           <th scope="col">solicitud medica</th>
           <th scope="col">factura</th>
