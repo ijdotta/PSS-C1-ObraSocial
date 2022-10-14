@@ -18,6 +18,7 @@ class MinorAffiliateController extends Controller
      */
     public function index()
     {
+
         $user = auth()->user(); //OJO podria ser asi Auth::user();
         
         if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
@@ -26,7 +27,10 @@ class MinorAffiliateController extends Controller
             $minorAffiliates = MinorAffiliate::all();
         }   
 
-        return view('minor_affiliate.index')->with('minorAffiliates', $minorAffiliates);
+        $minorAffiliates = MinorAffiliate::paginate(Controller::$RESULT_PAGINATION);
+
+        return view('minor_affiliate.index')
+                ->with('minorAffiliates', $minorAffiliates);
     }
 
     /**

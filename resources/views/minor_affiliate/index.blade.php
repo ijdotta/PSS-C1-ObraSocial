@@ -1,36 +1,60 @@
+
 @extends('layouts.app')
 
-@section('content_header')
-<h1>Menores afiliados a mi plan</h1>
-@stop
-
 @section('content')
-@include('components.buttons.add', ['route' => 'minor_affiliates.create', 'buttonText' => 'Agregar menor'])
-<table id="productos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%">
-    <thead class="bg-primary text-white">
-        <tr>
-            <th scope="col">Acciones</th>
-            <th scope="col">Nombre</th>
-            <th scope="col" class="esconder-modo-celular">Apellido</th>
-            <th scope="col" class="esconder-modo-celular">Fecha de nacimiento</th>
-            <th scope="col">DNI</th>
-            <th scope="col" class="esconder-modo-celular">Teléfono</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($minorAffiliates as $minorAffiliate)
-        <tr>
-            <td class="text-center">
-                @include('components.buttons.edit', ['element' => $minorAffiliate, 'route' => 'minor_affiliates.edit'])
-                @include('components.buttons.delete', ['element' => $minorAffiliate, 'route' => 'minor_affiliates.destroy'])
-            </td>
-            <td class="">{{$minorAffiliate->name}}</td>
-            <td class="">{{$minorAffiliate->surname}}</td>
-            <td class="">{{$minorAffiliate->birthdate}}</td>
-            <td class="">{{$minorAffiliate->DNI}}</td>
-            <td class="">{{$minorAffiliate->phone_number}}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-@stop
+<div class="pt-5 container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header font-semibold"><strong>Menores afiliados a mi plan</strong></div>
+                <div class="card-body">
+
+                    <x-errors-alerts />
+
+                    <div class="d-flex justify-content-center my-2">
+                        <a href="{{ route('minor_affiliates.create') }}"><button class="btn btn-success">Agregar
+                                menor de edad</button></a>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <th scope="col">Acciones</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Fecha de Nacimiento</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Telefono</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($minorAffiliates as $minorAffiliate)
+                            <tr>
+                                <td class="d-flex justify-content-start">
+                                    <a class="btn btn-outline-primary" href="{{ route('minor_affiliates.edit', $minorAffiliate->id) }}">
+                                        <i class="fas fa-pen mx-1"></i>
+                                    </a>
+                                    {!! Form::open([
+                                    'method' => 'delete',
+                                    'route' => ['minor_affiliates.destroy', $minorAffiliate->id],
+                                    'style' => 'display:inline',
+                                    ]) !!}
+                                    {!! Form::button('<i class="fa fa-trash mx-1"></i>', ['type' => 'submit', 'class' => 'btn btn-outline-danger']) !!}
+                                    {!! Form::close() !!}
+                                </td>
+                                <td>{{ $minorAffiliate->name }}</td>
+                                <td>{{ $minorAffiliate->surname }}</td>
+                                <td>{{ $minorAffiliate->birthdate }}</td>
+                                <td>{{ $minorAffiliate->DNI }}</td>
+                                <td>{{ $minorAffiliate->phone_number }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div>
+                        {{$minorAffiliates->links()}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
