@@ -9,23 +9,24 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card"> 
+                        <div class="card-header font-semibold"><strong>Editar afiliado</strong></div>
                             <div class="card-body">
                                <form class="form-floating mb-3" action="{{route('updateAffiliate',$adultAffiliate)}}" method="POST">
                                     <p for="floatingInput">Los campos con * son obligatorios</p>
                                     @csrf
 
                                    <div class="row align-items-start">
-                                        <label class="col">Nombre *</label>
+                                        <label class="">Nombre *</label>
                                         <input type="text" value="{{$adultAffiliate->name}}" class="form-control col" id="floatingInput" name="name" required>
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Apellido *</label>
+                                        <label class="">Apellido *</label>
                                         <input type="text" value="{{$adultAffiliate->surname}}" class="form-control col" id="floatingInput" name="surname" required>
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Fecha de nacimiento *</label>
+                                        <label class="">Fecha de nacimiento *</label>
                                         <input type="date" value="{{$adultAffiliate->birthdate}}" class="form-control col" id="floatingInput" name="birthdate" required>
                                     </div>
 
@@ -39,36 +40,40 @@
                                         <input type="email" value="{{$adultAffiliate->email}}" class="form-control col" id="floatingInput" name="email" required>
                                     </div>
 
-                                    <div class="row align-items-start">
-                                        <p class="col">Direccíon</p>
+                                    <div class="card-body">
+
+                                        <p><strong>Dirección</strong></p>
+
+                                        <div class="form-group">
+                                            <label class="">Calle</label>
+                                            <input type="text" value="{{$adultAffiliate->street}}" class="form-control col" id="floatingInput" name="street">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Número</label>
+                                            <input type="number" value="{{$adultAffiliate->street_number}}" class="form-control col" id="floatingInput" name="street_number">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Localidad *</label>
+                                            <input type="text" value="{{$adultAffiliate->location}}" class="form-control col" id="floatingInput" name="location" required>    
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Proviencia *</label>
+                                            <input type="text" value="{{$adultAffiliate->province}}" class="form-control col" id="floatingInput" name="province" required>      
+                                        </div>
+
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Calle</label>
-                                        <input type="text" value="{{$adultAffiliate->street}}" class="form-control col" id="floatingInput" name="street">
-                                        <label class="col">Número</label>
-                                        <input type="number" value="{{$adultAffiliate->street_number}}" class="form-control col" id="floatingInput" name="street_number">
-
-                                    </div>
-                                   
-                                    <div class="row align-items-start">
-                                        <label class="col">Localidad *</label>
-                                        <input type="text" value="{{$adultAffiliate->location}}" class="form-control col" id="floatingInput" name="location" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Proviencia *</label>
-                                        <input type="text" value="{{$adultAffiliate->province}}" class="form-control col" id="floatingInput" name="province" required>
-                                    </div>
-
-                                    <div class="row align-items-start">
-                                        <label class="col">Telefono *</label>
+                                        <label class="">Telefono *</label>
                                         <input type="text" value="{{$adultAffiliate->phone_number}}" class="form-control col" id="floatingInput" name="phone_number" required>
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Plan seleccionado *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="plan" required>
+                                        <label class="">Plan seleccionado *</label>
+                                        <select class="form-select " aria-label="Default select example" name="plan" required>
                                             @foreach ($planesEnUso as $plan)
                                                 <option @if($plan->id == $adultAffiliate->plan_id) selected @endif value="{{$plan->id}}">{{$plan->name}}</option>
                                             @endforeach
@@ -76,8 +81,8 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Forma de pago *</label>
-                                        <select class="form-select col" aria-label="Default select example" name="way_to_pay" required>
+                                        <label class="">Forma de pago *</label>
+                                        <select class="form-select " aria-label="Default select example" name="way_to_pay" required>
                                             <option @if($adultAffiliate->way_to_pay == "Mensual") selected @endif value="Mensual">Mensual</option>
                                             <option @if($adultAffiliate->way_to_pay == "Semestral") selected  @endif value="Semestral">Semestral</option>
                                             <option @if($adultAffiliate->way_to_pay == "Anual") selected @endif value="Anual">Anual</option>
@@ -85,7 +90,7 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Contraseña *</label>
+                                        <label class="">Contraseña *</label>
                                         <input type="password" 
                                             @auth
                                             @if(Auth::user()->role!="AFFILIATE")
