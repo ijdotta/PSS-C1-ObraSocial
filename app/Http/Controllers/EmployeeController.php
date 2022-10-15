@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\Plan;
 
 class EmployeeController extends Controller
 {
@@ -99,6 +100,35 @@ class EmployeeController extends Controller
                 ->with('roles', $roles);
     }
 
+    /*
+    public function editSelf($id)
+    {
+        $self=Employee::where('user_id','=',$id);
+        EmployeeController::edit($self);
+    }
+    */
+
+    public function myUserEmployee($id)
+    {
+        $self=Employee::where('user_id','=',$id)->get()->first();
+        
+        /*
+        $roles = EmployeeRole::array();
+
+        return view('employees.edit')
+                ->with('employee', $self)
+                ->with('roles', $roles);*/
+        return view('components.myUserEmployee',compact('self'));
+    }
+
+    
+    public function myUserEmployeeEdit(Employee $employee)
+    {
+        $self=$employee;
+        return view('components.myUserEmployeeEdit',compact('self'));
+    }
+    
+
     /**
      * Update the specified resource in storage.
      *
@@ -112,6 +142,16 @@ class EmployeeController extends Controller
         $employee->address->update($this->validateAddress($request));
         $employee->update($this->validateEmployeeUpdate($request));
 
+        return redirect(route('employees.index'));
+    }
+
+    public function updateEmployee(Request $request, Employee $employee)
+    {
+        
+        $employee->user->update($this->validateUserUpdate($request));
+        $employee->address->update($this->validateAddress($request));
+        $employee->update($this->validateEmployeeUpdate($request));
+        
         return redirect(route('employees.index'));
     }
     
