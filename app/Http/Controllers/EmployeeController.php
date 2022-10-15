@@ -10,7 +10,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Plan;
 
 class EmployeeController extends Controller
 {
@@ -100,32 +99,24 @@ class EmployeeController extends Controller
                 ->with('roles', $roles);
     }
 
-    /*
-    public function editSelf($id)
-    {
-        $self=Employee::where('user_id','=',$id);
-        EmployeeController::edit($self);
-    }
-    */
-
     public function myUserEmployee($id)
     {
         $self=Employee::where('user_id','=',$id)->get()->first();
-        
-        /*
         $roles = EmployeeRole::array();
-
-        return view('employees.edit')
-                ->with('employee', $self)
-                ->with('roles', $roles);*/
-        return view('components.myUserEmployee',compact('self'));
+        
+        return view('components.myUserEmployee',compact('self'))
+            ->with('employee', $self)
+            ->with('roles', $roles);
     }
 
     
     public function myUserEmployeeEdit(Employee $employee)
     {
         $self=$employee;
-        return view('components.myUserEmployeeEdit',compact('self'));
+        $roles = EmployeeRole::array();
+        return view('components.myUserEmployeeEdit',compact('self'))
+            ->with('employee', $self)
+            ->with('roles', $roles);;
     }
     
 
@@ -153,6 +144,18 @@ class EmployeeController extends Controller
         $employee->update($this->validateEmployeeUpdate($request));
         
         return redirect(route('employees.index'));
+    }
+    
+    public function updateEmployeeSelf(Request $request, Employee $employee)
+    {
+        $this->update($request, $employee);
+        
+        $roles = EmployeeRole::array();
+        $self = $employee;
+
+        return view('components.myUserEmployee',compact('self'))
+            ->with('employee', $self)
+            ->with('roles', $roles);
     }
     
     /**
@@ -199,7 +202,7 @@ class EmployeeController extends Controller
             'DNI' => 'required|integer',
             'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required|min:8|same:password_repeat',
+            'password' => 'required|min:6|same:password_repeat|regex:/[a-z]/|regex:/[A-Z]/',
         ]);
     }
 
@@ -209,7 +212,7 @@ class EmployeeController extends Controller
             'DNI' => 'required|integer',
             'name' => 'required|string',
             'email' => ['required', 'email'],
-            'password' => 'required|min:8|same:password_repeat',
+            'password' => 'required|min:6|same:password_repeat|regex:/[a-z]/|regex:/[A-Z]/',
         ]);
     }
 

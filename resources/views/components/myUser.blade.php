@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="row align-items-start">
-                                        <label class="col">Proviencia *</label>
+                                        <label class="col">Provincia *</label>
                                         <input type="text" value="{{$self->province}}" class="form-control col" id="floatingInput" name="province" disabled>
                                     </div>
 
@@ -86,7 +86,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="col">Contraseña *</label>
-                                        <input type="password" disabled value={{$self->password}} class="form-control col" id="floatingInput" name="password" required>
+                                        <input type="password" disabled value="{{$self->password}}" class="form-control col" id="floatingInput" name="password" required>
                                     </div>
                                     
                                     <div class="d-flex justify-content-end">
