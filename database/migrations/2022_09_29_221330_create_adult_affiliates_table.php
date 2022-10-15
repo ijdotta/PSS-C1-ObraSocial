@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->date('birthdate');
-            $table->mediumInteger('DNI')->unique();
+            $table->integer('DNI')->unique();
             $table->string('email')->unique();
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('street')->nullable();
             $table->string('street_number')->nullable();
-            $table->integer('phone_number')->nullable();
+            $table->string('phone_number')->nullable();
             $table->unsignedBigInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans')->onUpdate('cascade')
                 ->onDelete('cascade');

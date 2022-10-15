@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->smallInteger('DNI')->unique();
+            $table->integer('DNI')->unique();
             $table->date('birthdate');
             $table->integer('phone_number');
             $table->unsignedBigInteger('adult_affiliate_id');
