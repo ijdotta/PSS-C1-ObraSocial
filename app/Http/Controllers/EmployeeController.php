@@ -156,7 +156,7 @@ class EmployeeController extends Controller
     private function validateUser(Request $request)
     {
         return $request->validate([
-            'DNI' => 'required|integer|min:1000000',
+            'DNI' => 'required|integer',
             'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => 'required|min:8|same:password_repeat',
@@ -166,7 +166,7 @@ class EmployeeController extends Controller
     private function validateUserUpdate(Request $request)
     {
         return $request->validate([
-            'DNI' => 'required|integer|min:1000000',
+            'DNI' => 'required|integer',
             'name' => 'required|string',
             'email' => ['required', 'email'],
             'password' => 'required|min:8|same:password_repeat',

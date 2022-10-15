@@ -87,7 +87,7 @@ class AdultAffiliateController extends Controller
     {
         //dd($request->get('DNI'));
         return $request->validate([
-            'DNI' => 'required|integer|min:1000000',
+            'DNI' => 'required|integer',
             'name' => 'required|string',
             'email' => ['required', 'email', Rule::unique('users', 'email')],
             'password' => 'required|min:6|same:password_repeat|regex:/[a-z]/|regex:/[A-Z]/'
