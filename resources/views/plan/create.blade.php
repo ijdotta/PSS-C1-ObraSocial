@@ -164,8 +164,8 @@
 
                     <div style="overflow:auto;">
                         <div style="float:right;">
-                            <button class="btn btn-outline-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                            <button class="btn btn-outline-success" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                            <button class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previo</button>
+                            <button class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                         </div>
                     </div>
 
