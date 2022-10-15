@@ -22,6 +22,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'DNI',
         'name',
         'email',
         'password',
@@ -55,11 +56,12 @@ class User extends Authenticatable
         );
     }
 
-    public static function create_returnId($name, $role, $email, $password)
+    public static function create_returnId($dni, $name, $role, $email, $password)
     {
 
         $user = new User();
 
+        $user->dni = $dni;
         $user->name = $name;
         $user->role = $role;
         $user->email = $email;
