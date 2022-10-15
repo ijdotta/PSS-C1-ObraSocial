@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'DNI' => 11222333,
+            'DNI' => 12345678,
             'name' => 'fry',
             'role' => UserRole::EMPLOYEE->name,
             'email' => 'admin@os.com',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'DNI' => 22333444,
+            'DNI' => 87654321,
             'name' => 'Adul To1',
             'role' => UserRole::AFFILIATE->name,
             'email' => 'adul@to1.com',
