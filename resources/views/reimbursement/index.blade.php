@@ -6,42 +6,61 @@
 
 @section('content')
 
-    <div class="container">
-    <h3>Reintegros</h3><hr>
-    @include('components.buttons.add', ['buttonText'=>'Solicitar reintegro','route' => 'reimbursements.create'])
-    
-    De aca para abajo lo hice solo para testear... se puede borrar.
-    <table class="table">
-      <thead>
-        <tr>
-          
-          <th scope="col">Cuit/Cuil</th>
-          <th scope="col">solicitud medica</th>
-          <th scope="col">factura</th>
-          <th scope="col">historia clinica</th>
-          <th scope="col">comentario</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($data as $reimbursement)
-        <tr>
-            <td>{{$reimbursement->cuit_cuil}}</td>
-            <td>
-                <img src="{{ url('public/Image/'.$reimbursement->medical_request->image) }}" style="height: 100px; width: 150px;">
-            </td>
-            <td>
-                <embed src="{{ url('public/File/'.$reimbursement->invoice->image) }}" style="height: 100px; width: 150px;">
-            </td>
-            <td>
-                <embed src="{{ url('public/File/'.$reimbursement->clinic_history->file) }}" style="height: 100px; width: 150px;">
-            </td>
-            <td>
-                <a>{{$reimbursement->comment}}</a>
-            </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
+  
+  <div class="pt-5 container">
+        <div class="card">
+            <div class="card-header font-semibold"><strong>Reintegros</strong></div>
+            <div class="card-body">
+
+                <x-errors-alerts />
+
+                <div class="d-flex justify-content-center my-2">
+                    <a href="{{ route('reimbursements.create') }}"><button class="btn btn-success">Solicitar reintegros</button></a>
+                </div>
+
+                {{ Form::open(['route' => ['filteredBenefits']]) }}
+                <div class="row justify-content-start align-items-end border border-2 rounded rounded-5 p-2 m-3 gap-3">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('from') }}
+                            {{ Form::date('from', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            {{ Form::label('to') }}
+                            {{ Form::date('to', null, ['class' => 'form-control']) }}
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa-solid fa-check"></i>
+                            Aplicar
+                        </button>
+                    </div>
+                </div>
+                {{ Form::close() }}
+
+                <table class="table table-hover">
+                    <thead>
+                        <th scope="col">CUIL/CUIT</th>
+                        <th scope="col">Fecha de solicitud</th>
+                        <th scope="col">Fecha de estudio</th>
+                        <th scope="col">Estado</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($benefits as $benefit)
+                            <tr>
+                                <td>{{ $benefit->cuit_cuil }}</td>
+                                <td>{{ $benefit->created_at }}</td>
+                                <td>{{ $benefit->service_date }}</td>
+                                <td>{{ $benefitStates[$benefit->state] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 @endsection

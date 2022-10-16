@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\MedicalRequest;
 use App\Models\Invoice;
 use App\Models\ClinicHistory;
+use App\Models\AdultAffiliate;
 use DateTime;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Enums\BenefitStates;
+use App\Enums\UserRole;
 
 
 class ReimbursementController extends Controller
 {
+    private $VIEWS_ROOT_PATH = 'reimbursement';
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +26,59 @@ class ReimbursementController extends Controller
      */
     public function index()
     {
-        $data= Reimbursement::all();
-        return view('reimbursement.index', compact('data'));
+        return $this->getBenefitsIndexView(null);
+    }
+
+    public function filteredIndex(Request $request)
+    {
+        return $this->getBenefitsIndexView($request);
+    }
+
+    private function getBenefitsIndexView(?Request $request)
+    {
+        $benefits = $this->getBenefits($request);
+        $benefitStates = BenefitStates::array();
+
+        return view($this->VIEWS_ROOT_PATH.'.index')
+                ->with('benefits', $benefits)
+                ->with('benefitStates', $benefitStates);
+    }
+
+    private function getBenefits(?Request $request)
+    {
+        if (Auth::user()->role == UserRole::EMPLOYEE)
+        {
+            return Reimbursement::all(); // Benefit::paginate(Controller::$RESULT_PAGINATION);
+        }
+        else 
+        {
+            $adultAffiliate = $this->adultAffiliate();
+            if ($request == null)
+            {
+                return $adultAffiliate->reimbursements->all();
+            }
+            else
+            {
+                return $this->getFilteredBenefits($request);
+            }
+        }
+    }
+
+    private function getFilteredBenefits(Request $request)
+    {
+        $from = $request->from != null ? Carbon::createFromFormat('Y-m-d', $request->from) : Carbon::minValue();
+        $from->setHour(0);
+        $from->setMinute(0);
+        $from->setSecond(0);
+        clock('from: '.$from);
+        
+        $to = $request->to != null ? Carbon::createFromFormat('Y-m-d', $request->to) : Carbon::maxValue();
+        $to->setHour(23);
+        $to->setMinute(59);
+        $to->setSecond(59);
+        clock('to: '.$from);
+
+        return Reimbursement::whereBetween('created_at', [$from, $to])->get();
     }
 
     /**
@@ -48,10 +106,15 @@ class ReimbursementController extends Controller
 
         $reimbursement= new Reimbursement();
         $reimbursement->cuit_cuil=$request->cuit_cuil;
+        $reimbursement->service_date=$request->date;
 
         if($request->comment){
             $reimbursement->comment=$request->comment;
         }
+
+        $adultAffiliate = $this->adultAffiliate();
+
+        $reimbursement->adult_affiliate_id = $adultAffiliate->id;
 
         $reimbursement->save();
 
@@ -135,5 +198,11 @@ class ReimbursementController extends Controller
     public function destroy(reimbursement $reimbursement)
     {
         //
+    }
+
+    private function adultAffiliate() : ?AdultAffiliate
+    {
+        $user = Auth::user();
+        return $user->role == UserRole::AFFILIATE->name ? $user->adultAffiliate : null;
     }
 }

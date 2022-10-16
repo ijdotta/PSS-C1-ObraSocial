@@ -28,6 +28,11 @@ class AdultAffiliate extends Model
         return $this->hasMany(Benefit::class);
     }
 
+    public function reimbursements()
+    {
+        return $this->hasMany(Reimbursement::class);
+    }
+
     public static function storeAdultAffiliate($name, $surname, $birthdate, $DNI, $street, $streetNumber, $phoneNumber, $plan, $wayToPay, $password, $email, $location, $province, $user)
     {
         if (isset($name)) {

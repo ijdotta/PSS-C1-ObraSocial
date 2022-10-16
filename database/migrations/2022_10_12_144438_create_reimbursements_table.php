@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\BenefitStates;
 
 return new class extends Migration
 {
@@ -17,6 +18,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('cuit_cuil');
+            $table->foreignId('adult_affiliate_id');
+            $table->date('service_date');
+            $table->string('state')->default(BenefitStates::REQUESTED->name);
             $table->string('comment')->nullable();
             
         });
