@@ -77,8 +77,10 @@
                                 
                                      @if($isAffiliate)
                                        href="{{route('myUserAffiliate',$userId)}}" 
-                                    @else
-                                         href="#"
+                                    @elseif($isEmployee)
+                                            href="{{route('myUserEmployee',$userId)}}"
+                                        @else
+                                            href="#"
                                     @endif
                                     
                                 >Mi usuario</a>

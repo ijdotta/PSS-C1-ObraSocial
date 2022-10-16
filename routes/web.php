@@ -45,6 +45,12 @@ Route::post('/adult_affiliates/register',[App\Http\Controllers\AdultAffiliateCon
 Route::get('/adult_affiliates/myUserAffiliate/{id}',[App\Http\Controllers\AdultAffiliateController::class,'myUserAffiliate'])->name('myUserAffiliate'); //No borrar
 Route::get('/adult_affiliates/myUserAffiliateEdit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'myUserAffiliateEdit'])->name('myUserAffiliateEdit'); //No borrar
 
+Route::post('/employee/edit/{employee}',[App\Http\Controllers\EmployeeController::class,'updateEmployee'])->name('updateEmployee');
+Route::put('/employee/updateSelf/{employee}',[App\Http\Controllers\EmployeeController::class,'updateEmployeeSelf'])->name('updateEmployeeSelf'); 
+Route::get('/employees/myUserEmployee/{id}',[App\Http\Controllers\EmployeeController::class,'myUserEmployee'])->name('myUserEmployee'); 
+Route::get('/employees/myUserEmployeeEdit/{employee}',[App\Http\Controllers\EmployeeController::class,'myUserEmployeeEdit'])->name('myUserEmployeeEdit'); 
+
+
 //Esto de aca abajo eventualmente tiene que ser borrado, se hace automatico con las lineas de arriba.
 Route::get('/adult_affiliate/create',[App\Http\Controllers\AdultAffiliateController::class,'create'])->name('createAdultAffiliate');//Redirecciona a la pantalla para cargarlo
 Route::post('/adult_affiliate/store',[App\Http\Controllers\AdultAffiliateController::class,'store'])->name('storeAdultAffiliate');//Lo carga en la DB
