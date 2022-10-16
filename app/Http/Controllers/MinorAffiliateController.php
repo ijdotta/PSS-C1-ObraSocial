@@ -18,7 +18,8 @@ class MinorAffiliateController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
+
+        $user = auth()->user(); //OJO podria ser asi Auth::user();
         
         if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
             $minorAffiliates = $user->profile->minorAffiliates;
@@ -26,7 +27,10 @@ class MinorAffiliateController extends Controller
             $minorAffiliates = MinorAffiliate::all();
         }   
 
-        return view('minor_affiliate.index')->with('minorAffiliates', $minorAffiliates);
+        $minorAffiliates = MinorAffiliate::paginate(Controller::$RESULT_PAGINATION);
+
+        return view('minor_affiliate.index')
+                ->with('minorAffiliates', $minorAffiliates);
     }
 
     /**
@@ -109,7 +113,8 @@ class MinorAffiliateController extends Controller
      */
     public function edit(MinorAffiliate $minorAffiliate)
     {
-        //
+        return view('minor_affiliate.edit')
+                -> with('minor_affiliates',$minorAffiliate);
     }
 
     /**
@@ -122,6 +127,16 @@ class MinorAffiliateController extends Controller
     public function update(Request $request, MinorAffiliate $minorAffiliate)
     {
         //
+
+        $minorAffiliate->name = $request->get('name');
+        $minorAffiliate->surname = $request->get('surname');
+        $minorAffiliate->birthdate = $request->get('birthdate');
+        $minorAffiliate->DNI = $request->get('DNI');
+        $minorAffiliate->phone_number = $request->get('phone_number');
+
+        $minorAffiliate->save();
+        
+        return redirect()->route('minor_affiliates.index');
     }
 
     /**
