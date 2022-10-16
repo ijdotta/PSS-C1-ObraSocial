@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('Id Mayor responsabel * (SOLO ADMIN)') }}
+                        {{ Form::label('Id Mayor responsable * (SOLO ADMIN)') }}
                         {{ Form::number('adultAffiliateID', null, ['class' => 'form-control']) }}
                     </div>
 
