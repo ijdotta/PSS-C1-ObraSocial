@@ -40,7 +40,7 @@
                                 <a class="nav-link" href="{{route('dashboard')}}">Inicio<span class="sr-only"></span></a>
                             </li>
                         @endif
-                        @if($isAdmin || $isAffiliate)
+                        @if($isAdmin || $isAffiliate || $isEmployee)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('minor_affiliates.index')}}">Menores</a>
                             </li>
