@@ -39,6 +39,28 @@ class PlanController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'medical_consultations' => 'numeric|min:0|max:100',
+            'home_medical_consultations' => 'numeric|min:0|max:100',
+            'online_medical_consultations' => 'numeric|min:0|max:100',
+            'hospitalization' => 'numeric|min:0|max:100',
+            'general_odontology' => 'numeric|min:0|max:100',
+
+            'orthodontics' => 'numeric|min:0|max:100',
+            'dental_prosthetics' => 'numeric|min:0|max:100',
+            'dental_implants' => 'numeric|min:0|max:100',
+            'kinesiology' => 'numeric|min:0|max:100',
+            'psychology' => 'numeric|min:0|max:100',
+
+            'drugs_in_pharmacy' => 'numeric|min:0|max:100',
+            'medications_in_hospital' => 'numeric|min:0|max:100',
+            'optics' => 'numeric|min:0|max:100',
+            'cosmetic_surgeries' => 'numeric|min:0|max:100',
+            'clinical_analysis' => 'numeric|min:0|max:100',
+
+            'diagnostic_analysis' => 'numeric|min:0|max:100',
+        ]);
+
         $name = $request->get('name');
         $state = $request->get('state');
 

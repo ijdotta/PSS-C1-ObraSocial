@@ -12,6 +12,8 @@
                 <form id="regForm" action="{{route('plans.store')}}" method="POST">
                     @csrf
 
+                    <x-errors-alerts />
+
                     <!-- One "tab" for each step in the form: -->
                     <div class="tab">
                         <h3>Crear plan</h3>
