@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('reimbursements', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('cuit_cuil');
+            $table->unsignedBigInteger('cuit_cuil');
             $table->foreignId('adult_affiliate_id');
             $table->date('service_date');
             $table->string('state')->default(BenefitStates::REQUESTED->name);
