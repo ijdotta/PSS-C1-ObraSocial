@@ -25,7 +25,11 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <tr>
+                    <td>{{ $affiliate->id }}</td>
+                    <td>{{ $affiliate->name }}</td>
+                    <td>{{ $affiliate->email }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

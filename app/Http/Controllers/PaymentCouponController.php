@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AdultAffiliate;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class PaymentCouponController extends Controller
@@ -24,7 +26,8 @@ class PaymentCouponController extends Controller
      */
     public function create()
     {
-        return view('coupon.generatePaymentCoupon');
+        $affiliate=AdultAffiliate::where('user_id','=',Auth::user()->id)->get()->first();
+        return view('coupon.generatePaymentCoupon',compact('affiliate'));
     }
 
     public function request()
@@ -34,10 +37,11 @@ class PaymentCouponController extends Controller
 
     public function downloadPDF()
     {
+        $affiliate=AdultAffiliate::where('user_id','=',Auth::user()->id)->get()->first();
 
-        $pdf = PDF::loadView('coupon.pdf');
+        $pdf = PDF::loadView('coupon.pdf',compact('affiliate'));
 
-        return $pdf->download('coupon.pdf');
+        return $pdf->download('coupon.pdf',compact('affiliate'));
     }
 
     /**
