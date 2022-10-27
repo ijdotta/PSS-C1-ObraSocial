@@ -71,19 +71,27 @@
                                 </ul>
                             </li>
                         @endif
-                        @if($isAdmin || $isAffiliate)
+                        @if($isAdmin)
                             <li class="nav-item">
                                 <a class="nav-link" 
-                                
-                                     @if($isAffiliate)
-                                       href="{{route('myUserAffiliate',$userId)}}" 
-                                    @elseif($isEmployee)
+                                    @if($isEmployee)
                                             href="{{route('myUserEmployee',$userId)}}"
                                         @else
                                             href="#"
                                     @endif
                                     
                                 >Mi usuario</a>
+                            </li>
+                        @endif
+                        @if($isAffiliate)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Mi usuario
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="{{route('myUserAffiliate',$userId)}}" >Mis datos</a></li>
+                                    <li><a class="dropdown-item" href="{{route('request_payment_coupon')}}">Pago</a></li>
+                                </ul>
                             </li>
                         @endif
                     </ul>
