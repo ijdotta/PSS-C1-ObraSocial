@@ -25,7 +25,7 @@
 
                         <div class="form-group">
                             {{ Form::label('Fecha de nacimiento *') }}
-                            {{ Form::date('birthdate', null, ['class' => 'form-control']) }}
+                            {{ Form::date('birthdate', null, ['class' => 'form-control', 'disabled']) }}
                         </div>
 
                         <div class="form-group">
