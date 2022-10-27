@@ -14,6 +14,8 @@ return [
     */
 
     'failed' => 'Las credenciales introducidas son incorrectas.',
+    'wrongdni' => 'El DNI es incorrecto.',
+    'wrongpassword' => 'La contraseña es incorrecta.',
     'password' => 'La contraseña es incorrecta.',
     'throttle' => 'Demasiados intentos de acceso. Inténtelo de nuevo en :seconds segundos.',
 

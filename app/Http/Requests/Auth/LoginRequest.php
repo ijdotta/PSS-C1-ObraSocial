@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class LoginRequest extends FormRequest
 {
@@ -41,15 +43,22 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate()
+    public function authenticate(Request $request)
     {
         $this->ensureIsNotRateLimited();
+
+        if (! User::where('DNI', '=', $request->get('DNI'))->count() > 0){
+
+            throw ValidationException::withMessages([
+                'DNI' => trans('auth.wrongdni'),
+            ]);
+        }
 
         if (! Auth::attempt($this->only('DNI', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'DNI' => trans('auth.failed'),
+                'DNI' => trans('auth.wrongpassword'),
             ]);
         }
 
