@@ -8,6 +8,7 @@ use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\MinorAffiliateController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReimbursementController;
+use App\Http\Controllers\PaymentCouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::resource('minor_affiliates', MinorAffiliateController::class);
     Route::resource('plans', PlanController::class);
     Route::resource('reimbursements', ReimbursementController::class);
+
+    Route::get('/coupons/request',[App\Http\Controllers\PaymentCouponController::class,'request'])->name('request_payment_coupon');
+    Route::get('/coupons/create',[App\Http\Controllers\PaymentCouponController::class,'create'])->name('create_payment_coupon');
+    Route::get('/coupons/download',[App\Http\Controllers\PaymentCouponController::class,'downloadPDF'])->name('download_payment_coupon');
 
     Route::resource('benefits', BenefitController::class);
     Route::post('/benefits/filtered', [BenefitController::class, 'filteredIndex'])->name('filteredBenefits');
