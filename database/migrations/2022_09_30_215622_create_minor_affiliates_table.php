@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->integer('phone_number');
             $table->unsignedBigInteger('adult_affiliate_id');
-            $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('adult_affiliate_id')->references('id')->on('adult_affiliates')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
