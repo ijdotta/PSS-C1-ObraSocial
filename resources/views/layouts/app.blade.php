@@ -50,6 +50,11 @@
                                 <a class="nav-link" href="{{route('adult_affiliates.index')}}">Afiliados</a>
                             </li>
                         @endif
+                        @if ($isEmployee)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('benefitsToEvaluate')}}">Prestaciones</a>
+                            </li>
+                        @endif
                         @if($isAdmin)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('employees.index')}}">Empleados</a>
