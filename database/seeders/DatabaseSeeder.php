@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdultAffiliatesSeeder::class);
         $this->call(MinorAffiliatesSeeder::class);       
         $this->call(BenefitSeeder::class);
+        // $this->call(ReimbursementsSeeder::class);
     }
     
 }
