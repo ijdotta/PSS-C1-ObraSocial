@@ -42,7 +42,7 @@ class BenefitController extends Controller
 
     private function getBenefits(?Request $request)
     {
-        if (Auth::user()->role == UserRole::EMPLOYEE)
+        if (Auth::user()->role == UserRole::EMPLOYEE->name)
         {
             return Benefit::all(); // Benefit::paginate(Controller::$RESULT_PAGINATION);
         }
