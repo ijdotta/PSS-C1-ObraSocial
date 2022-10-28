@@ -56,7 +56,7 @@
                             </x-slot>
                 </x-forms.input>
 
-                <div class="d-flex justify-content-around">
+                <div class="d-flex justify-content-center gap-5">
                     <div>
                         {{ Form::open(['method' => 'PUT', 'route' => ['rejectBenefit', $benefit->id]]) }}
                         {{ Form::button('<i class="fa-solid fa-ban"></i> Desaprobar', ['type' => 'submit', 'class' => 'form-control btn-outline-danger']) }}
