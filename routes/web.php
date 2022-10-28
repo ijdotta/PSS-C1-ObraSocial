@@ -10,6 +10,7 @@ use App\Http\Controllers\MinorAffiliateController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReimbursementController;
 use App\Http\Controllers\PaymentCouponController;
+use App\Http\Controllers\ReimbursementEvaluationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,14 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/benefits/{id}/medical-history/download', [BenefitEvaluationController::class, 'downloadMedicalHistory'])->name('downloadMedicalHistory');
     Route::put('/benefits/{id}/evaluate/approve', [BenefitEvaluationController::class, 'approve'])->name('approveBenefit');
     Route::put('/benefits/{id}/evaluate/reject', [BenefitEvaluationController::class, 'reject'])->name('rejectBenefit');
+
+    Route::get('/evaluate/reimbursements', [ReimbursementEvaluationController::class, 'index'])->name('reimbursementsToEvaluate');
+    Route::get('/reimbursements/{id}/evaluate', [ReimbursementEvaluationController::class, 'evaluate'])->name('evaluateReimbursement');
+    Route::get('/reimbursements/{id}/invoice/download', [ReimbursementEvaluationController::class, 'downloadInvoice'])->name('downloadReimbursementInvoice');
+    Route::get('/reimbursements/{id}/medical-request/download', [ReimbursementEvaluationController::class, 'downloadMedicalRequest'])->name('downloadReimbursementMedicalRequest');
+    Route::get('/reimbursements/{id}/medical-history/download', [ReimbursementEvaluationController::class, 'downloadMedicalHistory'])->name('downloadReimbursementMedicalHistory');
+    Route::put('/reimbursements/{id}/evaluate/approve', [ReimbursementEvaluationController::class, 'approve'])->name('approveReimbursement');
+    Route::put('/reimbursements/{id}/evaluate/reject', [ReimbursementEvaluationController::class, 'reject'])->name('rejectReimbursement');
 
     Route::post('/plans/edit/{plan}',[App\Http\Controllers\PlanController::class,'updatePlan'])->name('updatePlan');                                      // No borrar, tuve problemas con los update predefinidos
     Route::post('/adult_affiliates/edit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliate'])->name('updateAffiliate');//  por lo que los cree de cero y no me permite usar el resource
