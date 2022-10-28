@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\AdultAffiliateController;
 use App\Http\Controllers\BenefitController;
+use App\Http\Controllers\BenefitEvaluationController;
 use App\Http\Controllers\MinorAffiliateController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReimbursementController;
@@ -42,6 +43,13 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('benefits', BenefitController::class);
     Route::post('/benefits/filtered', [BenefitController::class, 'filteredIndex'])->name('filteredBenefits');
+    
+    Route::get('/evaluate/benefits', [BenefitEvaluationController::class, 'index'])->name('benefitsToEvaluate');
+    Route::get('/benefits/{id}/evaluate', [BenefitEvaluationController::class, 'evaluate'])->name('evaluateBenefit');
+    Route::get('/benefits/{id}/medical-order/download', [BenefitEvaluationController::class, 'downloadMedicalOrder'])->name('downloadMedicalOrder');
+    Route::get('/benefits/{id}/medical-history/download', [BenefitEvaluationController::class, 'downloadMedicalHistory'])->name('downloadMedicalHistory');
+    Route::put('/benefits/{id}/evaluate/approve', [BenefitEvaluationController::class, 'approve'])->name('approveBenefit');
+    Route::put('/benefits/{id}/evaluate/reject', [BenefitEvaluationController::class, 'reject'])->name('rejectBenefit');
 
     Route::post('/plans/edit/{plan}',[App\Http\Controllers\PlanController::class,'updatePlan'])->name('updatePlan');                                      // No borrar, tuve problemas con los update predefinidos
     Route::post('/adult_affiliates/edit/{adultAffiliate}',[App\Http\Controllers\AdultAffiliateController::class,'updateAffiliate'])->name('updateAffiliate');//  por lo que los cree de cero y no me permite usar el resource
