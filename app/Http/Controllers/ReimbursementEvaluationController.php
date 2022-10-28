@@ -45,20 +45,20 @@ class ReimbursementEvaluationController extends ReimbursementController
     {
         $reimbursement = reimbursement::find($id);
         $invoice = $reimbursement->invoice;
-        return $invoice ? Storage::download($invoice->image) : redirect()->back()->withErrors(['file not found' => 'La factura no existe']);
+        return $invoice && $invoice->image ? Storage::download($invoice->image) : redirect()->back()->withErrors(['file not found' => 'La factura no existe']);
     }
 
     public function downloadMedicalRequest(Request $request, $id)
     {
         $reimbursement = reimbursement::find($id);
         $medical_request = $reimbursement->medical_request;
-        return $medical_request ? Storage::download($medical_request->image) : redirect()->back()->withErrors(['file not found' => 'La solicitud médica no existe']);
+        return $medical_request && $medical_request->image ? Storage::download($medical_request->image) : redirect()->back()->withErrors(['file not found' => 'La solicitud médica no existe']);
     }
 
     public function downloadMedicalHistory(Request $request, $id)
     {
         $reimbursement = reimbursement::find($id);
         $clinic_history = $reimbursement->clinic_history;
-        return $clinic_history ? Storage::download($clinic_history->file) : redirect()->back()->withErrors(['file not found' => 'La historia clínica no existe']);
+        return $clinic_history && $clinic_history->file ? Storage::download($clinic_history->file) : redirect()->back()->withErrors(['file not found' => 'La historia clínica no existe']);
     }
 }

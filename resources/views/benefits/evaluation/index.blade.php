@@ -3,7 +3,7 @@
 @section('content')
     <div class="pt-5 container">
         <div class="card">
-            <div class="card-header font-semibold"><strong>Prestaciones pendientes</strong></div>
+            <div class="card-header font-semibold"><strong>Solicitudes de prestación pendientes</strong></div>
             <div class="card-body">
 
                 <x-errors-alerts />

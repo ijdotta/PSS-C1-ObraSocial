@@ -9,6 +9,13 @@
                 <x-errors-alerts />
 
                 <x-forms.input>
+                    <x-slot:label>{{ Form::label('Solicitante') }}</x-slot>
+                        <x-slot:input>
+                            {{ Form::text('lastname_name', $benefit->adult_affiliate->lastname.', '.$benefit->adult_affiliate->name, ['class' => 'form-control', 'disabled' => 'true']) }}
+                            </x-slot>
+                </x-forms.input>
+
+                <x-forms.input>
                     <x-slot:label>{{ Form::label('Nombre del profesional o establecimiento') }}</x-slot>
                         <x-slot:input>
                             {{ Form::text('provider', $benefit->provider, ['class' => 'form-control', 'disabled' => 'true']) }}
