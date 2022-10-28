@@ -20,10 +20,10 @@ class BenefitFactory extends Factory
     {
         $uuid = fake()->uuid();
 
-        $jpg_path = 'order_'.$uuid.'jpg';
+        $jpg_path = 'order_'.$uuid.'.jpg';
         Storage::put($jpg_path, '1010101010');
 
-        $pdf_path = 'history_'.$uuid.'pdf';
+        $pdf_path = 'history_'.$uuid.'.pdf';
         Storage::put($pdf_path, 'historia clinica');
 
         return [
