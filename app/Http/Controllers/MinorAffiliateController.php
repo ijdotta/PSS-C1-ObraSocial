@@ -19,15 +19,14 @@ class MinorAffiliateController extends Controller
     public function index()
     {
 
-        $user = auth()->user(); //OJO podria ser asi Auth::user();
+        $user = auth()->user();
         
         if (strcmp($user->role, UserRole::AFFILIATE->name) == 0) {
-            $minorAffiliates = $user->profile->minorAffiliates;
+            $adult_affiliate_id = $user->profile->id;
+            $minorAffiliates = MinorAffiliate::where('adult_affiliate_id', $adult_affiliate_id)->paginate(Controller::$RESULT_PAGINATION);
         } else {            
-            $minorAffiliates = MinorAffiliate::all();
-        }   
-
-        $minorAffiliates = MinorAffiliate::paginate(Controller::$RESULT_PAGINATION);
+            $minorAffiliates = MinorAffiliate::paginate(Controller::$RESULT_PAGINATION);
+        } 
 
         return view('minor_affiliate.index')
                 ->with('minorAffiliates', $minorAffiliates);
