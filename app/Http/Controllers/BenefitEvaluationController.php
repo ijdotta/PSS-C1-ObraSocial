@@ -33,13 +33,15 @@ class BenefitEvaluationController extends BenefitController
     public function downloadMedicalOrder(Request $request, $id) 
     {
         $benefit = Benefit::find($id);
-        return Storage::download($benefit->path_to_medical_order);
+        $path = $benefit->path_to_medical_order;
+        return $path ? Storage::download($path) : redirect()->back()->withErrors(['file not found' => 'La orden médica no existe']);
     }
 
     public function downloadMedicalHistory(Request $request, $id) 
     {
         $benefit = Benefit::find($id);
-        return Storage::download($benefit->path_to_medical_history);
+        $path = $benefit->path_to_medical_history;
+        return $path ? Storage::download($path) : redirect()->back()->withErrors(['file not found' => 'La historia clínica no existe']);
     }
 
     public function approve(Request $request, $id) 
