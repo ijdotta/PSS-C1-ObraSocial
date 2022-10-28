@@ -12,6 +12,11 @@ class reimbursement extends Model
 {
     use HasFactory;
 
+    public function adult_affiliate()
+    {
+        return $this->belongsTo(AdultAffiliate::class);
+    }
+
     public function medical_request()
     {
         return $this->hasOne(MedicalRequest::class);

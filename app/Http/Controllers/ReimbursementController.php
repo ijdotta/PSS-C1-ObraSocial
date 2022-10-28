@@ -99,6 +99,7 @@ class ReimbursementController extends Controller
      */
     public function store(Request $request)
     {
+        clock($request);
 
         $request->validate(   
             ['date' => 'before:yesterday'] 
@@ -121,10 +122,10 @@ class ReimbursementController extends Controller
         /**Imagen de solicitud medica **/
         $data= new MedicalRequest();
         if($request->file('image_medical_request')){
-            $file= $request->file('image_medical_request');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/Image'), $filename);
-            $data['image']= $filename;
+            $file = $request->file('image_medical_request')->store('medical_requests');
+            // $filename= date('YmdHi').$file->getClientOriginalName();
+            // $file-> move(public_path('public/Image'), $filename);
+            $data['image']= $file;
         }
         $data->reimbursement_id=$reimbursement->id;
         $data->save();
@@ -132,10 +133,10 @@ class ReimbursementController extends Controller
         /**Imagen/archivo  de factura **/
         $invoice= new Invoice();
         if($request->file('invoice')){
-            $file= $request->file('invoice');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/File'), $filename);
-            $invoice['image']= $filename;
+            $file = $request->file('invoice')->store('invoices');
+            // $filename= date('YmdHi').$file->getClientOriginalName();
+            // $file-> move(public_path('public/File'), $filename);
+            $invoice['image']= $file;
         }
         $invoice->reimbursement_id=$reimbursement->id;
         $invoice->save();
@@ -143,10 +144,10 @@ class ReimbursementController extends Controller
         /**archivo de historia clinica**/
         $clinic_history= new ClinicHistory();
         if($request->file('clinic_history')){
-            $file= $request->file('clinic_history');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/File'), $filename);
-            $clinic_history['file']= $filename;
+            $file = $request->file('clinic_history') == null ? null : $request->file('clinic_history')->store('histories');
+            // $filename= date('YmdHi').$file->getClientOriginalName();
+            // $file-> move(public_path('public/File'), $filename);
+            $clinic_history['file']= $file;
         }
         $clinic_history->reimbursement_id=$reimbursement->id;
         $clinic_history->save();
