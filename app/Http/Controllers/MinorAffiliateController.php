@@ -32,6 +32,17 @@ class MinorAffiliateController extends Controller
                 ->with('minorAffiliates', $minorAffiliates);
     }
 
+    public function indexByAdult(AdultAffiliate $adultAffiliate)
+    {
+
+        $minorAffiliates = MinorAffiliate::where('adult_affiliate_id', $adultAffiliate->id)->paginate(Controller::$RESULT_PAGINATION);
+
+        return view('minor_affiliate.indexByAdult', [
+            'minorAffiliates'=>$minorAffiliates,
+            'adultAffiliate'=>$adultAffiliate
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -148,5 +159,11 @@ class MinorAffiliateController extends Controller
     {
         $minorAffiliate->delete();
         return redirect()->route('minor_affiliates.index');
+    }
+
+    public function destroyByAdultAffiliate(AdultAffiliate $adultAffiliate, MinorAffiliate $minorAffiliate)
+    {
+        $minorAffiliate->delete();
+        return redirect()->route('edit_adult_minors', $adultAffiliate);
     }
 }

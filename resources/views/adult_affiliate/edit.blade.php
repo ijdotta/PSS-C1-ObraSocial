@@ -40,6 +40,10 @@
                                         <input type="email" value="{{$adultAffiliate->email}}" class="form-control col" id="floatingInput" name="email" required>
                                     </div>
 
+                                    <div class="row align-items-start">
+                                        <a href="{{route('edit_adult_minors', $adultAffiliate->id)}}"class="pe-2 btn btn-primary">Modificar menores asociados</a>
+                                    </div>
+
                                     <div class="card-body">
 
                                         <p><strong>Dirección</strong></p>

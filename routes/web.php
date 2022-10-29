@@ -33,6 +33,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::resource('employees', EmployeeController::class);
+    Route::get('adult_affiliates/{adultAffiliate}/edit/minors', [App\Http\Controllers\MinorAffiliateController::class,'indexByAdult'])->name('edit_adult_minors');
+    Route::delete('adult_affiliates/{adultAffiliate}/delete_minor/{minorAffiliate}', [App\Http\Controllers\MinorAffiliateController::class,'destroyByAdultAffiliate'])->name('delete_minor_by_adult');
     Route::resource('adult_affiliates', AdultAffiliateController::class);
     Route::resource('minor_affiliates', MinorAffiliateController::class);
     Route::resource('plans', PlanController::class);
@@ -85,6 +87,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/plan/store',[App\Http\Controllers\PlanController::class,'store'])->name('storePlan');
 
     Route::get('/minor_affiliate/create',[App\Http\Controllers\MinorAffiliateController::class,'create'])->name('newMinorAffiliate');
-    Route::post('/minor_affiliate/store',[App\Http\Controllers\MinorAffiliateController::class,'store'])->name('addMinorAffiliate');
+    Route::post('/minor_affiliate/store',[App\Http\Controllers\MinorAffiliateController::class,'store'])->name('addMinorAffiliate');    
 });
 require __DIR__.'/auth.php';
