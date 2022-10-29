@@ -72,7 +72,7 @@ class MinorAffiliateController extends Controller
         if (MinorAffiliateController::is_minor($birthdate))
             return response()->json(['message' => 'Es mayor de edad'], 200); //Hacer vista para cuando ya se intenta registrar un mayor de edad
 
-        if (AdultAffiliate::where('ID', '=', $adultAffiliateID)->count() < 1)
+        if (AdultAffiliate::where('id', '=', $adultAffiliateID)->count() < 1)
             return response()->json(['message' => 'El ID del mayor responsable no es valido'], 200); //Corroborar que funcione cuando ya tengamos adultos
 
         try {
