@@ -12,8 +12,8 @@
                 <a href="{{ route('adult_affiliates.edit', $adultAffiliate) }}" type="button" class="btn btn-outline-danger" aria-expanded="false" title="Cancelar">
                     Cancelar
                 </a>       
-                <a href="{{ route('minor_affiliates.create') }}"><button class="btn btn-success">Agregar
-                        menor de edad</button></a>
+                <!-- <a href="{{ route('minor_affiliates.create') }}"><button class="btn btn-success">Agregar
+                        menor de edad</button></a> -->
             </div>
 
             <table class="table table-hover">
