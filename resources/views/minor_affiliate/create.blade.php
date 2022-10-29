@@ -37,10 +37,12 @@
                         {{ Form::number('phoneNumber', null, ['class' => 'form-control']) }}
                     </div>
 
+                    @can('link_minor_to_other_than_themselves')
                     <div class="form-group">
                         {{ Form::label('Id Mayor responsable * (SOLO ADMIN)') }}
                         {{ Form::number('adultAffiliateID', null, ['class' => 'form-control']) }}
                     </div>
+                    @endcan
 
 
 
