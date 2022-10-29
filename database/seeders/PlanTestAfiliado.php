@@ -38,10 +38,10 @@ class PlanTestAfiliado extends Seeder
         $plan1->clinical_analysis=1;
         
         $plan1->diagnostic_analysis=1;
-        $plan1->price_under_25=1;
-        $plan1->price_from_25_to_40=1;
-        $plan1->price_from_40_to_60=1;
-        $plan1->price_over_60=1;
+        $plan1->price_under_25=1000;
+        $plan1->price_from_25_to_40=2000;
+        $plan1->price_from_40_to_60=2000;
+        $plan1->price_over_60=4000;
 
         $plan1->save();
     

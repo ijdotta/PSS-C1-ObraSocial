@@ -40,6 +40,9 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('/coupons/request',[App\Http\Controllers\PaymentCouponController::class,'request'])->name('request_payment_coupon');
     Route::get('/coupons/create',[App\Http\Controllers\PaymentCouponController::class,'create'])->name('create_payment_coupon');
+    Route::get('/coupons/create/month',[App\Http\Controllers\PaymentCouponController::class,'createMonth'])->name('create_payment_coupon_month');
+    Route::get('/coupons/create/semester/{semester}',[App\Http\Controllers\PaymentCouponController::class,'createSemester'])->name('create_payment_coupon_semester');
+    Route::get('/coupons/create/annual',[App\Http\Controllers\PaymentCouponController::class,'createAnnual'])->name('create_payment_coupon_annual');
     Route::get('/coupons/download',[App\Http\Controllers\PaymentCouponController::class,'downloadPDF'])->name('download_payment_coupon');
 
     Route::resource('benefits', BenefitController::class);
