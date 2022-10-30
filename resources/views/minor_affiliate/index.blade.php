@@ -27,11 +27,9 @@
                     <tr>
                         
                         <td class="d-flex justify-content-start">
-                            @can('update', App\Models\MinorAffiliate::class)
                             <a class="btn btn-outline-primary" href="{{ route('minor_affiliates.edit', $minorAffiliate->id) }}">
                                 <i class="fas fa-pen mx-1"></i>
                             </a>
-                            @endcan
                             {!! Form::open([
                             'method' => 'delete',
                             'route' => ['minor_affiliates.destroy', $minorAffiliate->id],

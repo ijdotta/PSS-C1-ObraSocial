@@ -138,11 +138,35 @@ class MinorAffiliateController extends Controller
     {
         //
 
-        $minorAffiliate->name = $request->get('name');
-        $minorAffiliate->surname = $request->get('surname');
-        $minorAffiliate->birthdate = $request->get('birthdate');
-        $minorAffiliate->DNI = $request->get('DNI');
-        $minorAffiliate->phone_number = $request->get('phone_number');
+        if($request->get('name') == NULL){
+            $minorAffiliate->name = MinorAffiliate::where('id', '=', $request->get('id'))->value('name');
+        } else {
+            $minorAffiliate->name = $request->get('name');
+        }
+        
+        if($request->get('surname') == NULL){
+            $minorAffiliate->surname = MinorAffiliate::where('id', '=', $request->get('id'))->value('surname');
+        } else {
+            $minorAffiliate->surname = $request->get('surname');
+        }
+
+        if($request->get('birthdate') == NULL){
+            $minorAffiliate->birthdate = MinorAffiliate::where('id', '=', $request->get('id'))->value('birthdate');
+        } else {
+            $minorAffiliate->birthdate = $request->get('birthdate');
+        }
+
+        if($request->get('DNI') == NULL){
+            $minorAffiliate->DNI = MinorAffiliate::where('id', '=', $request->get('id'))->value('DNI');
+        } else {
+            $minorAffiliate->DNI = $request->get('DNI');
+        }
+
+        if($request->get('phone_number') == NULL){
+            $minorAffiliate->phone_number = MinorAffiliate::where('id', '=', $request->get('id'))->value('phone_number');
+        } else {
+            $minorAffiliate->phone_number = $request->get('phone_number');
+        }
 
         $minorAffiliate->save();
         

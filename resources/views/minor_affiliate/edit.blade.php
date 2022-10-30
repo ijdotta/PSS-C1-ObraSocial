@@ -12,15 +12,31 @@
 
                         {{-- {{ Form::open(['route' => ['minor_affiliates.store']]) }} --}}
                         {{ Form::model($minor_affiliates, ['method' => 'PUT', 'route' => ['minor_affiliates.update', $minor_affiliates->id]]) }}
+                        
+                        {{ Form::hidden('id', null, ['class' => 'form-control']) }}
 
                         <div class="form-group">
-                            {{ Form::label('Nombre *') }}
-                            {{ Form::text('name', null, ['class' => 'form-control']) }}
+                            @auth
+                            @if(Auth::user()->role!="AFFILIATE")
+                                {{ Form::label('Nombre *') }}
+                                {{ Form::text('name', null, ['class' => 'form-control']) }}
+                            @else
+                                {{ Form::label('Nombre *') }}
+                                {{ Form::text('name', null, ['class' => 'form-control', 'disabled']) }}
+                            @endif
+                            @endauth 
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('Apellido *') }}
-                            {{ Form::text('surname', null, ['class' => 'form-control']) }}
+                            @auth
+                            @if(Auth::user()->role!="AFFILIATE")
+                                {{ Form::label('Apellido *') }}
+                                {{ Form::text('surname', null, ['class' => 'form-control']) }}
+                            @else
+                                {{ Form::label('Apellido *') }}
+                                {{ Form::text('surname', null, ['class' => 'form-control', 'disabled']) }}
+                            @endif
+                            @endauth 
                         </div>
 
                         <div class="form-group">
@@ -29,8 +45,15 @@
                         </div>
 
                         <div class="form-group">
-                            {{ Form::label('DNI *') }}
-                            {{ Form::number('DNI', null, ['class' => 'form-control']) }}
+                            @auth
+                            @if(Auth::user()->role!="AFFILIATE")
+                                {{ Form::label('DNI *') }}
+                                {{ Form::number('DNI', null, ['class' => 'form-control']) }}
+                            @else
+                                {{ Form::label('DNI *') }}
+                                {{ Form::number('DNI', null, ['class' => 'form-control', 'disabled']) }}
+                            @endif
+                            @endauth 
                         </div>
 
                     
