@@ -95,7 +95,7 @@
 
                                     <div class="row align-items-start">
                                         <label class="">Contraseña *</label>
-                                        <input type="password" 
+                                        <input type="password" class="form-control col" 
                                             @auth
                                             @if(Auth::user()->role!="AFFILIATE")
                                                 disabled
