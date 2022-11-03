@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\BenefitStates;
-use App\Models\reimbursement;
+use App\Models\Reimbursement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
